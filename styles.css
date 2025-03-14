@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select, button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+#resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #e0e0e0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button.eliminar {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+button.eliminar:hover {
+    background-color: #666;
+}
+
+.factura {
+    font-family: Arial, sans-serif;
+    color: #000;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.factura h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #ff0000; /* Rojo solo para la palabra BRANOX */
+    margin-bottom: 0;
+}
+
+.factura p {
+    margin: 12px 0;
+    text-align: left;
+}
+
+.factura .header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.factura .header p {
+    text-align: left;
+    margin: 0;
+}
+
+.factura .header span {
+    float: left;
+    margin: 0;
+    text-align: left;
+}
+
+.factura h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.factura ul {
+    padding-right: 0;
+    margin-top: 10px;
+}
+
+.factura ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.factura .total {
+    text-align: right;
+    font-weight: bold;
+}
+
+.factura .precios-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.factura .precios-header .descripcion {
+    text-align: left;
+    flex: 3;
+}
+
+.factura .precios-header .precio {
+    text-align: right;
+    flex: 1;
+}
+

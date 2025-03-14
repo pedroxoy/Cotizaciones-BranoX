@@ -1,0 +1,51 @@
+[
+    {
+        "descripcion": "Detergente Líquido Floral",
+        "precioVenta": 55,
+        "codigo": "3965418",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente Líquido Manzana Verde",
+        "precioVenta": 55,
+        "codigo": "3965419",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente Líquido Naranja",
+        "precioVenta": 55,
+        "codigo": "432345",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Shampoo Avena y Miel",
+        "precioVenta": 100,
+        "codigo": "123456",
+        "categoria": "Cuidado Personal",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Jabón Líquido Antibacterial",
+        "precioVenta": 45,
+        "codigo": "654321",
+        "categoria": "Higiene",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Detergente Líquido Manzana Verde",
+        "precioVenta": 55,
+        "codigo": "3965418",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion":"Detergente Líquido Naranja",
+        "precioVenta": 175,
+        "codigo":"8410963",
+        "categoria":"Detergentes",
+        "medida":"20 Litros"
+    }
+]

@@ -10,8 +10,8 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const validPassword = "y1e2s3i4...";
 
     if (email === validEmail && password === validPassword) {
-        sessionStorage.setItem("autenticado", true);
-        window.location.href = "index.html";
+        sessionStorage.setItem("autenticado", true); // Marca al usuario como autenticado
+        window.location.href = "index.html"; // Redirige a la cotización
     } else {
         errorMessage.textContent = "Correo o contraseña incorrectos";
         errorMessage.style.display = "block";

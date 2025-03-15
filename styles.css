@@ -56,5 +56,16 @@ button:hover {
     font-size: 14px;
     display: none;
 }
+.watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px; /* Ajusta el tamaño según lo necesites */
+    height: auto;
+    opacity: 0.1; /* Controla la transparencia */
+    pointer-events: none; /* Evita que interfiera con los elementos interactivos */
+    z-index: -1; /* Asegura que esté en el fondo */
+}
 
 

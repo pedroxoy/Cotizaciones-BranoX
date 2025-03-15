@@ -1,36 +1,42 @@
-// Lista de productos disponibles
-const productosDisponibles = [
-    { descripcion: "Detergente para ropa Manzana Verde | 4 Litros", precio: 175 },
-    { descripcion: "Suavizante para telas Flor de Manzana | 4 Litros", precio: 210 },
-    { descripcion: "Jabón líquido para trastes | 1 Litro", precio: 45 }
-];
-
 // Referencias a los elementos del DOM
 const productoSelect = document.getElementById('producto');
 const listaProductos = document.getElementById('listaProductos');
 const agregarProductoBtn = document.getElementById('agregarProducto');
 
-// Cargar productos en el <select>
-productosDisponibles.forEach((producto, index) => {
-    const option = document.createElement('option');
-    option.value = index; // El valor será el índice del producto
-    option.textContent = producto.descripcion;
-    productoSelect.appendChild(option);
-});
+// Productos cargados desde productos.json
+let productosDisponibles = [];
+
+// Cargar productos desde productos.json
+fetch('productos.json')
+    .then(response => response.json())
+    .then(data => {
+        productosDisponibles = data;
+        cargarProductosEnSelect();
+    })
+    .catch(error => console.error('Error al cargar productos:', error));
+
+// Función para cargar productos en el <select>
+function cargarProductosEnSelect() {
+    productosDisponibles.forEach((producto, index) => {
+        const option = document.createElement('option');
+        option.value = index; // Usamos el índice como identificador
+        option.textContent = `${producto.descripcion} (${producto.medida})`;
+        productoSelect.appendChild(option);
+    });
+}
 
 // Manejar la acción de agregar producto
 agregarProductoBtn.addEventListener('click', () => {
     const productoIndex = productoSelect.value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
-    const precio = parseFloat(document.getElementById('precio').value);
 
-    if (productoIndex === "" || isNaN(cantidad) || isNaN(precio)) {
+    if (productoIndex === "" || isNaN(cantidad)) {
         alert("Por favor, completa todos los campos antes de agregar un producto.");
         return;
     }
 
     const producto = productosDisponibles[productoIndex];
-    const total = (cantidad * precio).toFixed(2);
+    const total = (cantidad * producto.precioVenta).toFixed(2);
 
     // Crear un nuevo elemento para la lista de productos
     const item = document.createElement('div');
@@ -44,8 +50,16 @@ agregarProductoBtn.addEventListener('click', () => {
     precios.classList.add('producto-precios');
     precios.textContent = `Q ${total}`;
 
+    const eliminarBtn = document.createElement('button');
+    eliminarBtn.classList.add('eliminar-producto');
+    eliminarBtn.textContent = "Eliminar";
+    eliminarBtn.addEventListener('click', () => {
+        listaProductos.removeChild(item);
+    });
+
     item.appendChild(descripcion);
     item.appendChild(precios);
+    item.appendChild(eliminarBtn);
     listaProductos.appendChild(item);
 
     // Limpiar los campos

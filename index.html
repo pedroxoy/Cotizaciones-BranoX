@@ -5,17 +5,12 @@
     <title>Generador de Cotizaciones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Verificar si el usuario está autenticado
-        const usuarioAutenticado = sessionStorage.getItem("autenticado");
-        if (!usuarioAutenticado) {
-            // Si no está autenticado, redirige a login.html
-            window.location.href = "login.html";
-        }
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
+    <!-- Marca de agua como imagen de fondo -->
+    <img src="marca-agua.png" alt="Marca de Agua" class="watermark">
+
     <div class="container">
         <h1>Generador de Cotizaciones</h1>
         <form id="cotizacionForm">
@@ -52,3 +47,4 @@
     <script src="app.js"></script>
 </body>
 </html>
+

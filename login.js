@@ -10,7 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const validPassword = "y1e2s3i4...";
 
     if (email === validEmail && password === validPassword) {
-        // Redireccionar a la página de cotizaciones
+        // Redirigir a la página de cotizaciones
         window.location.href = "index.html";
     } else {
         // Mostrar mensaje de error

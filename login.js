@@ -6,8 +6,8 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const errorMessage = document.getElementById('error');
 
     // Credenciales únicas permitidas
-    const validEmail = "admin@correo.com";
-    const validPassword = "123456";
+    const validEmail = "pedrozambrano354@gmail.com";
+    const validPassword = "y1e2s3i4...";
 
     if (email === validEmail && password === validPassword) {
         // Redireccionar a la página de cotizaciones

@@ -5,6 +5,13 @@
     <title>Generador de Cotizaciones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Verificar si el usuario está autenticado
+        const usuarioAutenticado = sessionStorage.getItem("autenticado");
+        if (!usuarioAutenticado) {
+            window.location.href = "login.html"; // Redirige al inicio de sesión
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
@@ -36,5 +43,6 @@
     <script src="app.js"></script>
 </body>
 </html>
+
 
 

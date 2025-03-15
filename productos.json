@@ -1,51 +1,205 @@
 [
     {
-        "descripcion": "Detergente Líquido Floral",
-        "precioVenta": 55,
+        "descripcion": "Detergente para ropa Floral",
+        "precioVenta": 55.00,
         "codigo": "3965418",
         "categoria": "Detergentes",
         "medida": "4 Litros"
     },
     {
-        "descripcion": "Detergente Líquido Manzana Verde",
-        "precioVenta": 55,
-        "codigo": "3965419",
-        "categoria": "Detergentes",
-        "medida": "4 Litros"
-    },
-    {
-        "descripcion": "Detergente Líquido Naranja",
-        "precioVenta": 55,
-        "codigo": "432345",
-        "categoria": "Detergentes",
-        "medida": "4 Litros"
-    },
-    {
-        "descripcion": "Jabón líquido para trastes",
-        "precioVenta": 100,
-        "codigo": "294788",
-        "categoria": "Detergente",
-        "medida": "4 Litros"
-    },
-    {
-        "descripcion": "Jabón Líquido Antibacterial",
-        "precioVenta": 45,
-        "codigo": "654321",
-        "categoria": "Higiene",
-        "medida": "500 ml"
-    },
-    {
-        "descripcion": "Detergente Líquido Manzana Verde",
-        "precioVenta": 55,
-        "codigo": "3965418",
+        "descripcion": "Detergente para ropa Floral",
+        "precioVenta": 175.00,
+        "codigo": "9521074",
         "categoria": "Detergentes",
         "medida": "20 Litros"
     },
     {
-        "descripcion":"Detergente Líquido Naranja",
-        "precioVenta": 175,
-        "codigo":"8410963",
-        "categoria":"Detergentes",
-        "medida":"20 Litros"
+        "descripcion": "Detergente para ropa Manzana Verde",
+        "precioVenta": 55.00,
+        "codigo": "1743296",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Manzana Verde",
+        "precioVenta": 175.00,
+        "codigo": "7309852",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Naranja",
+        "precioVenta": 55.00,
+        "codigo": "2854307",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Naranja",
+        "precioVenta": 175.00,
+        "codigo": "8410963",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Jabón líquido para trastes",
+        "precioVenta": 17.50,
+        "codigo": "531864",
+        "categoria": "Jabones",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Jabón líquido para trastes",
+        "precioVenta": 45.00,
+        "codigo": "294788",
+        "categoria": "Jabones",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Flor de Manzana",
+        "precioVenta": 70.00,
+        "codigo": "4076529",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Flor de Manzana",
+        "precioVenta": 210.00,
+        "codigo": "823491",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Fresca Primavera",
+        "precioVenta": 70.00,
+        "codigo": "5187630",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Fresca Primavera",
+        "precioVenta": 210.00,
+        "codigo": "823491",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Suave Caricia",
+        "precioVenta": 75.00,
+        "codigo": "6298741",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Suave Caricia",
+        "precioVenta": 225.00,
+        "codigo": "462372",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Shampoo Avena y Miel",
+        "precioVenta": 45.00,
+        "codigo": "015",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Shampoo Acondicionador Aloe Vera",
+        "precioVenta": 50.00,
+        "codigo": "016",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Acondicionador Cabello Keratina",
+        "precioVenta": 55.00,
+        "codigo": "017",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Acondicionador Cabello Brillo Natural",
+        "precioVenta": 60.00,
+        "codigo": "018",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Toallas Microfibra 30x30 cm",
+        "precioVenta": 20.00,
+        "codigo": "019",
+        "categoria": "Limpieza del Hogar",
+        "medida": "Paquete de 2"
+    },
+    {
+        "descripcion": "Cepillo para Lavar Trastes",
+        "precioVenta": 15.00,
+        "codigo": "020",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Esponja Scotch-Brite Multisuperficies",
+        "precioVenta": 12.50,
+        "codigo": "021",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Esponja Doble Uso (Suave y Abrasiva)",
+        "precioVenta": 10.00,
+        "codigo": "022",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Paquete de 3"
+    },
+    {
+        "descripcion": "Detergente en Polvo Limón",
+        "precioVenta": 75.00,
+        "codigo": "023",
+        "categoria": "Detergentes",
+        "medida": "5 Kg"
+    },
+    {
+        "descripcion": "Limpiador Multiusos Floral",
+        "precioVenta": 30.00,
+        "codigo": "024",
+        "categoria": "Limpieza del Hogar",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Jabón Líquido Antibacterial Manos",
+        "precioVenta": 25.00,
+        "codigo": "025",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Ambientador Aroma Lavanda",
+        "precioVenta": 20.00,
+        "codigo": "026",
+        "categoria": "Aromatizantes",
+        "medida": "300 ml"
+    },
+    {
+        "descripcion": "Limpiador de Vidrios con Alcohol",
+        "precioVenta": 28.00,
+        "codigo": "027",
+        "categoria": "Limpieza del Hogar",
+        "medida": "750 ml"
+    },
+    {
+        "descripcion": "Desinfectante Pino Concentrado",
+        "precioVenta": 35.00,
+        "codigo": "028",
+        "categoria": "Limpieza del Hogar",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Detergente Líquido Lavanda",
+        "precioVenta": 82.50,
+        "codigo": "029",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
     }
 ]

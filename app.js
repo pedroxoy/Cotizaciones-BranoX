@@ -1,16 +1,7 @@
 const productos = [
-    {
-        descripcion: "Detergente para ropa Manzana Verde | 4 Litros",
-        precio: "Q 175.00"
-    },
-    {
-        descripcion: "Suavizante para telas Flor de Manzana | 4 Litros",
-        precio: "Q 210.00"
-    },
-    {
-        descripcion: "Jabón líquido para trastes | 1 Litro",
-        precio: "Q 45.00"
-    }
+    { descripcion: "Detergente para ropa Manzana Verde | 4 Litros", precio: "Q 175.00" },
+    { descripcion: "Suavizante para telas Flor de Manzana | 4 Litros", precio: "Q 210.00" },
+    { descripcion: "Jabón líquido para trastes | 1 Litro", precio: "Q 45.00" }
 ];
 
 const listaProductos = document.getElementById('listaProductos');
@@ -31,6 +22,7 @@ productos.forEach(producto => {
     item.appendChild(precios);
     listaProductos.appendChild(item);
 });
+
 
 
 

@@ -1,85 +1,43 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-}
-
-.login-container {
-    background: #ffffff;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-    width: 300px;
-}
-
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #333;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: red;
-    font-size: 14px;
-    display: none;
-}
-
-.watermark {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    opacity: 0.1;
-    pointer-events: none;
-    z-index: -1;
 }
 
 .container {
     background: #ffffff;
     padding: 20px;
+    margin: 20px auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 600px;
 }
 
+h1, h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+label, .producto-descripcion {
+    color: #333;
+}
+
+input, button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
 .producto-item {
     display: flex;
     justify-content: space-between;
-    padding: 5px 0;
     border-bottom: 1px solid #ddd;
 }
 
@@ -91,6 +49,17 @@ button:hover {
 .producto-precios {
     flex: 0 0 150px;
     text-align: right;
+}
+
+.watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+    width: 300px;
 }
 
 

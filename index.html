@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Generador de Cotizaciones</title>
+    <title>Cotización BRANOX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script>
@@ -15,24 +15,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Marca de agua -->
-    <img src="marca-agua.png" alt="Marca de Agua" class="watermark">
+    <!-- Contenedor principal angosto -->
+    <div class="container-narrow">
+        <!-- Encabezado con BRANOX -->
+        <header>
+            <h1 class="branox-header">BRANOX</h1>
+        </header>
 
-    <!-- Encabezado con BRANOX -->
-    <header>
-        <h1 style="text-align: center; font-size: 24px; font-weight: bold;">BRANOX</h1>
-    </header>
+        <!-- Información general -->
+        <div class="info-cotizacion">
+            <p><strong>Fecha:</strong> <span id="fechaCotizacion"></span></p>
+            <p><strong>No. de Cotización:</strong> <span id="numeroCotizacion"></span></p>
+        </div>
 
-    <!-- Contenedor de fecha y número de cotización -->
-    <div style="text-align: right; margin-top: 10px;">
-        <p>Fecha: <span id="fechaCotizacion"></span></p>
-        <p>No. de Cotización: <span id="numeroCotizacion"></span></p>
-    </div>
-
-    <div class="container">
-        <h1>Generador de Cotizaciones</h1>
+        <!-- Información del cliente -->
+        <h2>Información del Cliente</h2>
         <form id="cotizacionForm">
-            <h2>Información del Cliente</h2>
             <label for="nombreCliente">Nombre:</label>
             <input type="text" id="nombreCliente" name="nombreCliente" required>
             <label for="direccionCliente">Dirección:</label>
@@ -42,6 +40,7 @@
             <label for="telefonoCliente">Teléfono:</label>
             <input type="text" id="telefonoCliente" name="telefonoCliente" required>
 
+            <!-- Productos -->
             <h2>Productos</h2>
             <label for="producto">Producto:</label>
             <select id="producto" name="producto"></select>
@@ -54,11 +53,18 @@
             <h2>Lista de Productos</h2>
             <div id="listaProductos"></div>
 
+            <!-- Generar cotización -->
             <button type="submit">Generar Cotización</button>
         </form>
+
+        <!-- Resultado -->
         <div id="resultado"></div>
         <button id="descargarPDF" style="display: none;">Descargar PDF</button>
     </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
 
     <script src="app.js"></script>
 </body>

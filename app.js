@@ -6,6 +6,14 @@ const cotizacionForm = document.getElementById('cotizacionForm');
 const resultado = document.getElementById('resultado');
 const descargarPDFBtn = document.getElementById('descargarPDF');
 
+// Configurar la fecha actual y un número de cotización
+const fechaActual = new Date().toISOString().slice(0, 10); // Fecha en formato AAAA-MM-DD
+const numeroCotizacion = `COT-${Math.floor(Math.random() * 100000)}`; // Número de cotización aleatorio
+
+// Asignar valores al DOM
+document.getElementById('fechaCotizacion').textContent = fechaActual;
+document.getElementById('numeroCotizacion').textContent = numeroCotizacion;
+
 // Productos cargados desde productos.json
 let productosDisponibles = [];
 let productosCotizados = []; // Lista de productos agregados a la cotización
@@ -98,6 +106,8 @@ cotizacionForm.addEventListener('submit', (e) => {
 
     let cotizacionHTML = `
         <h2>Cotización Generada</h2>
+        <p><strong>Fecha:</strong> ${fechaActual}</p>
+        <p><strong>No. de Cotización:</strong> ${numeroCotizacion}</p>
         <p><strong>Cliente:</strong> ${nombreCliente}</p>
         <p><strong>Dirección:</strong> ${direccionCliente}</p>
         <p><strong>NIT:</strong> ${nitCliente}</p>

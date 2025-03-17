@@ -166,28 +166,30 @@ cotizacionForm.addEventListener('submit', (e) => {
 
     document.body.innerHTML = cotizacionHTML;
     descargarPDFBtn.style.display = "block";
-    descargarImagenBtn.style.display = "block"; // Mostrar el botón de descarga de imagen
+
+    // Mostrar el botón de descarga de imagen
+    if (!document.getElementById('descargarImagen')) {
+        const descargarImagenBtn = document.createElement('button');
+        descargarImagenBtn.textContent = "Descargar Imagen";
+        descargarImagenBtn.id = "descargarImagen"; // Agregar un ID único
+        descargarImagenBtn.style.display = "inline-block";
+        document.body.appendChild(descargarImagenBtn);
+
+        descargarImagenBtn.addEventListener('click', () => {
+            const elemento = document.querySelector('.cotizacion-pdf');
+            html2canvas(elemento).then(canvas => {
+                const imagen = canvas.toDataURL('image/png');
+                const enlace = document.createElement('a');
+                enlace.href = imagen;
+                enlace.download = 'cotizacion.png';
+                enlace.click();
+            });
+        });
+    }
 });
 
 // Preparar el botón de descarga como PDF
 descargarPDFBtn.addEventListener('click', () => {
     const elemento = document.querySelector('.cotizacion-pdf');
     html2pdf().from(elemento).save('cotizacion.pdf');
-});
-
-// Agregar botón para descargar la imagen
-const descargarImagenBtn = document.createElement('button');
-descargarImagenBtn.textContent = "Descargar Imagen";
-descargarImagenBtn.style.display = "none"; // Ocultar inicialmente
-document.body.appendChild(descargarImagenBtn);
-
-descargarImagenBtn.addEventListener('click', () => {
-    const elemento = document.querySelector('.cotizacion-pdf');
-    html2canvas(elemento).then(canvas => {
-        const imagen = canvas.toDataURL('image/png');
-        const enlace = document.createElement('a');
-        enlace.href = imagen;
-        enlace.download = 'cotizacion.png';
-        enlace.click();
-    });
 });

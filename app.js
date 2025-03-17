@@ -1,6 +1,6 @@
 // Referencias a los elementos del DOM
 const productoSelect = document.getElementById('producto');
-const tablaProductos = document.getElementById('listaProductos'); // Cambiado para que coincida con el HTML
+const tablaProductos = document.getElementById('listaProductos');
 const agregarProductoBtn = document.getElementById('agregarProducto');
 const cotizacionForm = document.getElementById('cotizacionForm');
 const descargarPDFBtn = document.getElementById('descargarPDF');
@@ -36,7 +36,7 @@ function cargarProductosEnSelect() {
 agregarProductoBtn.addEventListener('click', () => {
     const productoIndex = productoSelect.value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
-    const precio = parseFloat(document.getElementById('precio').value); // Obtener el precio del input
+    const precio = parseFloat(document.getElementById('precio').value);
 
     if (productoIndex === "" || isNaN(cantidad) || isNaN(precio)) {
         alert("Por favor, completa todos los campos antes de agregar un producto.");
@@ -44,7 +44,7 @@ agregarProductoBtn.addEventListener('click', () => {
     }
 
     const producto = productosDisponibles[productoIndex];
-    const total = (cantidad * precio).toFixed(2); // Usar el precio del input
+    const total = (cantidad * precio).toFixed(2);
 
     const productoCotizado = {
         descripcion: producto.descripcion,
@@ -80,12 +80,12 @@ agregarProductoBtn.addEventListener('click', () => {
     tablaProductos.appendChild(item);
 
     document.getElementById('cantidad').value = '';
-    document.getElementById('precio').value = ''; // Limpiar el campo de precio
+    document.getElementById('precio').value = '';
 });
 
 // Manejar la acción de generar la cotización
 cotizacionForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Evitar el envío del formulario
 
     if (productosCotizados.length === 0) {
         alert("Por favor, agrega al menos un producto antes de generar la cotización.");
@@ -150,7 +150,7 @@ cotizacionForm.addEventListener('submit', (e) => {
         </div>
     `;
 
-    document.body.innerHTML = cotizacionHTML; // Mostrar la cotización generada
+    document.body.innerHTML = cotizacionHTML;
     descargarPDFBtn.style.display = "block";
 });
 

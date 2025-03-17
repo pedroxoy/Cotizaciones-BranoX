@@ -13,7 +13,7 @@ body {
     margin: 20px auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    max-width: 400px; /* Ajustamos el ancho */
+    max-width: 400px;
 }
 
 /* Encabezado */
@@ -21,8 +21,14 @@ header h1 {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     color: #007BFF;
+}
+
+header p {
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
 }
 
 /* Información de cotización */
@@ -30,7 +36,7 @@ header h1 {
     font-size: 14px;
     color: #333;
     margin-bottom: 20px;
-    text-align: right;
+    text-align: center;
 }
 
 .info-cotizacion p {
@@ -112,7 +118,7 @@ button:hover {
 /* Diseño responsivo para dispositivos pequeños */
 @media (max-width: 480px) {
     .container-narrow {
-        max-width: 320px; /* Más estrecho para pantallas pequeñas */
+        max-width: 320px;
     }
 
     header h1 {
@@ -120,8 +126,72 @@ button:hover {
     }
 
     .info-cotizacion {
-        text-align: center;
         font-size: 12px;
     }
+}
+
+/* Estilos para el PDF */
+.cotizacion-pdf {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.header-pdf {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-pdf h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-pdf p {
+    margin: 5px 0;
+}
+
+.info-pdf {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cliente-pdf h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.cliente-pdf p {
+    margin: 5px 0;
+}
+
+.productos-pdf h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.productos-pdf table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.productos-pdf th,
+.productos-pdf td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.productos-pdf th {
+    font-weight: bold;
+}
+
+.total-pdf {
+    text-align: right;
+    margin-top: 20px;
 }
 

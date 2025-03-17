@@ -167,7 +167,7 @@ cotizacionForm.addEventListener('submit', (e) => {
     document.body.innerHTML = cotizacionHTML;
     descargarPDFBtn.style.display = "block";
 
-    // Mostrar el botón de descarga de imagen
+    // Agregar botón para descargar la imagen
     if (!document.getElementById('descargarImagen')) {
         const descargarImagenBtn = document.createElement('button');
         descargarImagenBtn.textContent = "Descargar Imagen";

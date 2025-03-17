@@ -15,35 +15,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Contenedor principal angosto -->
     <div class="container-narrow">
-        <!-- Encabezado con BRANOX -->
         <header>
             <h1 class="branox-header">BRANOX</h1>
+            <p>Distribuidora de productos de limpieza</p>
         </header>
 
-        <!-- Información general -->
         <div class="info-cotizacion">
             <p><strong>Fecha:</strong> <span id="fechaCotizacion"></span></p>
             <p><strong>No. de Cotización:</strong> <span id="numeroCotizacion"></span></p>
         </div>
 
-        <!-- Información del cliente -->
         <h2>Información del Cliente</h2>
         <form id="cotizacionForm">
-            <label for="nombreCliente">Nombre:</label>
-            <input type="text" id="nombreCliente" name="nombreCliente" required>
-            <label for="direccionCliente">Dirección:</label>
-            <input type="text" id="direccionCliente" name="direccionCliente" required>
-            <label for="nitCliente">NIT:</label>
-            <input type="text" id="nitCliente" name="nitCliente" required>
-            <label for="telefonoCliente">Teléfono:</label>
-            <input type="text" id="telefonoCliente" name="telefonoCliente" required>
+            <label for="nombreClienteInput">Nombre:</label>
+            <input type="text" id="nombreClienteInput" name="nombreClienteInput" required>
+            <label for="direccionClienteInput">Dirección:</label>
+            <input type="text" id="direccionClienteInput" name="direccionClienteInput" required>
+            <label for="nitClienteInput">NIT:</label>
+            <input type="text" id="nitClienteInput" name="nitClienteInput" required>
+            <label for="telefonoClienteInput">Teléfono:</label>
+            <input type="text" id="telefonoClienteInput" name="telefonoClienteInput" required>
 
-            <!-- Productos -->
             <h2>Productos</h2>
             <label for="producto">Producto:</label>
-            <select id="producto" name="producto"></select>
+            <select id="producto" name="producto">
+                <option value="0">Detergente para ropa Floral (4 Litros)</option>
+                </select>
             <label for="cantidad">Cantidad:</label>
             <input type="number" id="cantidad" name="cantidad" required>
             <label for="precio">Precio:</label>
@@ -53,18 +51,11 @@
             <h2>Lista de Productos</h2>
             <div id="listaProductos"></div>
 
-            <!-- Generar cotización -->
             <button type="submit">Generar Cotización</button>
         </form>
 
-        <!-- Resultado -->
-        <div id="resultado"></div>
         <button id="descargarPDF" style="display: none;">Descargar PDF</button>
     </div>
-
-    <script src="app.js"></script>
-</body>
-</html>
 
     <script src="app.js"></script>
 </body>

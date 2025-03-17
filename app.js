@@ -1,6 +1,6 @@
 // Referencias a los elementos del DOM
 const productoSelect = document.getElementById('producto');
-const tablaProductos = document.getElementById('tablaProductos').getElementsByTagName('tbody')[0];
+const tablaProductos = document.getElementById('listaProductos'); // Cambiado para que coincida con el HTML
 const agregarProductoBtn = document.getElementById('agregarProducto');
 const cotizacionForm = document.getElementById('cotizacionForm');
 const descargarPDFBtn = document.getElementById('descargarPDF');
@@ -8,10 +8,6 @@ const descargarPDFBtn = document.getElementById('descargarPDF');
 // Configurar la fecha actual y un número de cotización
 const fechaActual = new Date().toISOString().slice(0, 10);
 const numeroCotizacion = `COT-${Math.floor(Math.random() * 100000)}`;
-
-// Asignar valores al DOM
-document.getElementById('fechaCotizacion').textContent = fechaActual;
-document.getElementById('numeroCotizacion').textContent = numeroCotizacion;
 
 // Productos cargados desde productos.json
 let productosDisponibles = [];
@@ -40,34 +36,51 @@ function cargarProductosEnSelect() {
 agregarProductoBtn.addEventListener('click', () => {
     const productoIndex = productoSelect.value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
+    const precio = parseFloat(document.getElementById('precio').value); // Obtener el precio del input
 
-    if (productoIndex === "" || isNaN(cantidad)) {
+    if (productoIndex === "" || isNaN(cantidad) || isNaN(precio)) {
         alert("Por favor, completa todos los campos antes de agregar un producto.");
         return;
     }
 
     const producto = productosDisponibles[productoIndex];
-    const total = (cantidad * producto.precioVenta).toFixed(2);
+    const total = (cantidad * precio).toFixed(2); // Usar el precio del input
 
     const productoCotizado = {
         descripcion: producto.descripcion,
         cantidad: cantidad,
-        precio: producto.precioVenta,
+        precio: precio,
         total: total
     };
 
     productosCotizados.push(productoCotizado);
 
-    const newRow = tablaProductos.insertRow();
-    const cell1 = newRow.insertCell(0);
-    const cell2 = newRow.insertCell(1);
-    const cell3 = newRow.insertCell(2);
+    const item = document.createElement('div');
+    item.classList.add('producto-item');
 
-    cell1.textContent = `${producto.descripcion} (x${cantidad})`;
-    cell2.textContent = `Q ${producto.precioVenta}`;
-    cell3.textContent = `Q ${total}`;
+    const descripcion = document.createElement('span');
+    descripcion.classList.add('producto-descripcion');
+    descripcion.textContent = `${producto.descripcion} (x${cantidad})`;
+
+    const precios = document.createElement('span');
+    precios.classList.add('producto-precios');
+    precios.textContent = `Q ${total}`;
+
+    const eliminarBtn = document.createElement('button');
+    eliminarBtn.classList.add('eliminar-producto');
+    eliminarBtn.textContent = "Eliminar";
+    eliminarBtn.addEventListener('click', () => {
+        tablaProductos.removeChild(item);
+        productosCotizados = productosCotizados.filter(p => p !== productoCotizado);
+    });
+
+    item.appendChild(descripcion);
+    item.appendChild(precios);
+    item.appendChild(eliminarBtn);
+    tablaProductos.appendChild(item);
 
     document.getElementById('cantidad').value = '';
+    document.getElementById('precio').value = ''; // Limpiar el campo de precio
 });
 
 // Manejar la acción de generar la cotización
@@ -80,22 +93,69 @@ cotizacionForm.addEventListener('submit', (e) => {
     }
 
     // Mostrar información del cliente
-    document.getElementById('nombreCliente').textContent = document.getElementById('nombreClienteInput').value;
-    document.getElementById('direccionCliente').textContent = document.getElementById('direccionClienteInput').value;
-    document.getElementById('nitCliente').textContent = document.getElementById('nitClienteInput').value;
-    document.getElementById('telefonoCliente').textContent = document.getElementById('telefonoClienteInput').value;
+    const nombreCliente = document.getElementById('nombreClienteInput').value;
+    const direccionCliente = document.getElementById('direccionClienteInput').value;
+    const nitCliente = document.getElementById('nitClienteInput').value;
+    const telefonoCliente = document.getElementById('telefonoClienteInput').value;
 
-    // Calcular total general
-    let totalGeneral = productosCotizados.reduce((acc, producto) => acc + parseFloat(producto.total), 0).toFixed(2);
-    document.getElementById('montoTotal').textContent = totalGeneral;
+    let cotizacionHTML = `
+        <div class="cotizacion-pdf">
+            <div class="header-pdf">
+                <h1>BRANOX</h1>
+                <p>Distribuidora de productos de limpieza</p>
+            </div>
+            <div class="info-pdf">
+                <p>${fechaActual}</p>
+                <p>Cotización #${numeroCotizacion.split('-')[1]}</p>
+            </div>
+            <div class="cliente-pdf">
+                <h2>Información del Cliente</h2>
+                <p>Nombre: ${nombreCliente}</p>
+                <p>Dirección: ${direccionCliente}</p>
+                <p>NIT: ${nitCliente}</p>
+                <p>Teléfono: ${telefonoCliente}</p>
+            </div>
+            <div class="productos-pdf">
+                <h2>Productos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Precio Unidad</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    `;
 
+    let totalGeneral = 0;
+    productosCotizados.forEach(producto => {
+        cotizacionHTML += `
+            <tr>
+                <td>${producto.descripcion} (x${producto.cantidad})</td>
+                <td>Q ${producto.precio}</td>
+                <td>Q ${producto.total}</td>
+            </tr>
+        `;
+        totalGeneral += parseFloat(producto.total);
+    });
+
+    cotizacionHTML += `
+                    </tbody>
+                </table>
+            </div>
+            <div class="total-pdf">
+                <p>Total: Q ${totalGeneral.toFixed(2)}</p>
+            </div>
+        </div>
+    `;
+
+    document.body.innerHTML = cotizacionHTML; // Mostrar la cotización generada
     descargarPDFBtn.style.display = "block";
 });
 
 // Preparar el botón de descarga como PDF
 descargarPDFBtn.addEventListener('click', () => {
-    const elemento = document.querySelector('.container-narrow'); // Contenedor principal
+    const elemento = document.querySelector('.cotizacion-pdf');
     html2pdf().from(elemento).save('cotizacion.pdf');
 });
-
-

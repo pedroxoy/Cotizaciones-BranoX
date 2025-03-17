@@ -109,7 +109,7 @@ cotizacionForm.addEventListener('submit', (e) => {
     const nitCliente = document.getElementById('nitClienteInput').value;
     const telefonoCliente = document.getElementById('telefonoClienteInput').value;
 
-    const numeroCotizacion = obtenerNumeroCotizacion(); // Obtener el número de cotización
+    const numeroCotizacion = obtenerNumeroCotizacion();
 
     let cotizacionHTML = `
         <div class="cotizacion-pdf">
@@ -143,10 +143,11 @@ cotizacionForm.addEventListener('submit', (e) => {
 
     let totalGeneral = 0;
     productosCotizados.forEach(producto => {
+        const precioUnitario = parseFloat(producto.precio).toFixed(2);
         cotizacionHTML += `
             <tr>
                 <td>${producto.descripcion} (x${producto.cantidad})</td>
-                <td>Q ${producto.precio}</td>
+                <td>Q ${precioUnitario}</td>
                 <td>Q ${producto.total}</td>
             </tr>
         `;
@@ -165,10 +166,28 @@ cotizacionForm.addEventListener('submit', (e) => {
 
     document.body.innerHTML = cotizacionHTML;
     descargarPDFBtn.style.display = "block";
+    descargarImagenBtn.style.display = "block"; // Mostrar el botón de descarga de imagen
 });
 
 // Preparar el botón de descarga como PDF
 descargarPDFBtn.addEventListener('click', () => {
     const elemento = document.querySelector('.cotizacion-pdf');
     html2pdf().from(elemento).save('cotizacion.pdf');
+});
+
+// Agregar botón para descargar la imagen
+const descargarImagenBtn = document.createElement('button');
+descargarImagenBtn.textContent = "Descargar Imagen";
+descargarImagenBtn.style.display = "none"; // Ocultar inicialmente
+document.body.appendChild(descargarImagenBtn);
+
+descargarImagenBtn.addEventListener('click', () => {
+    const elemento = document.querySelector('.cotizacion-pdf');
+    html2canvas(elemento).then(canvas => {
+        const imagen = canvas.toDataURL('image/png');
+        const enlace = document.createElement('a');
+        enlace.href = imagen;
+        enlace.download = 'cotizacion.png';
+        enlace.click();
+    });
 });

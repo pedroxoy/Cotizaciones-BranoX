@@ -148,6 +148,11 @@ button:hover {
 .header-pdf h1 {
     font-size: 24px;
     margin: 0;
+    font-family: 'Montserrat Black', sans-serif;
+    color: #FF0000;
+    font-weight: 900;
+    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
 .header-pdf p {
@@ -194,4 +199,3 @@ button:hover {
     text-align: right;
     margin-top: 20px;
 }
-

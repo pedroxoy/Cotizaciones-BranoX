@@ -5,9 +5,20 @@ const agregarProductoBtn = document.getElementById('agregarProducto');
 const cotizacionForm = document.getElementById('cotizacionForm');
 const descargarPDFBtn = document.getElementById('descargarPDF');
 
-// Configurar la fecha actual y un número de cotización
+// Configurar la fecha actual
 const fechaActual = new Date().toISOString().slice(0, 10);
-const numeroCotizacion = `COT-${Math.floor(Math.random() * 100000)}`;
+
+// Función para obtener el número de cotización
+function obtenerNumeroCotizacion() {
+    let numeroCotizacion = localStorage.getItem('numeroCotizacion');
+    if (numeroCotizacion === null) {
+        numeroCotizacion = 1; // Número inicial siempre es 1
+    } else {
+        numeroCotizacion = parseInt(numeroCotizacion) + 1;
+    }
+    localStorage.setItem('numeroCotizacion', numeroCotizacion);
+    return numeroCotizacion;
+}
 
 // Productos cargados desde productos.json
 let productosDisponibles = [];
@@ -85,7 +96,7 @@ agregarProductoBtn.addEventListener('click', () => {
 
 // Manejar la acción de generar la cotización
 cotizacionForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evitar el envío del formulario
+    e.preventDefault();
 
     if (productosCotizados.length === 0) {
         alert("Por favor, agrega al menos un producto antes de generar la cotización.");
@@ -98,6 +109,8 @@ cotizacionForm.addEventListener('submit', (e) => {
     const nitCliente = document.getElementById('nitClienteInput').value;
     const telefonoCliente = document.getElementById('telefonoClienteInput').value;
 
+    const numeroCotizacion = obtenerNumeroCotizacion(); // Obtener el número de cotización
+
     let cotizacionHTML = `
         <div class="cotizacion-pdf">
             <div class="header-pdf">
@@ -106,7 +119,7 @@ cotizacionForm.addEventListener('submit', (e) => {
             </div>
             <div class="info-pdf">
                 <p>${fechaActual}</p>
-                <p>Cotización #${numeroCotizacion.split('-')[1]}</p>
+                <p>Cotización #${numeroCotizacion}</p>
             </div>
             <div class="cliente-pdf">
                 <h2>Información del Cliente</h2>

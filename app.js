@@ -20,6 +20,20 @@ function obtenerNumeroCotizacion() {
     return numeroCotizacion;
 }
 
+// Función para regresar al número de cotización anterior
+function regresarNumeroCotizacion() {
+    let numeroCotizacion = localStorage.getItem('numeroCotizacion');
+    if (numeroCotizacion > 1) {
+        numeroCotizacion = parseInt(numeroCotizacion) - 1;
+        localStorage.setItem('numeroCotizacion', numeroCotizacion);
+    }
+}
+
+// Función para restablecer el número de cotización a "COT_0001"
+function restablecerNumeroCotizacion() {
+    localStorage.setItem('numeroCotizacion', 1);
+}
+
 // Productos cargados desde productos.json
 let productosDisponibles = [];
 let productosCotizados = [];
@@ -110,6 +124,7 @@ cotizacionForm.addEventListener('submit', (e) => {
     const telefonoCliente = document.getElementById('telefonoClienteInput').value;
 
     const numeroCotizacion = obtenerNumeroCotizacion();
+    const numeroCotizacionFormateado = "COT_" + numeroCotizacion.toString().padStart(4, '0');
 
     let cotizacionHTML = `
         <div class="cotizacion-pdf">
@@ -119,7 +134,7 @@ cotizacionForm.addEventListener('submit', (e) => {
             </div>
             <div class="info-pdf">
                 <p>${fechaActual}</p>
-                <p>Cotización #${numeroCotizacion}</p>
+                <p>${numeroCotizacionFormateado}</p>
             </div>
             <div class="cliente-pdf">
                 <h2>Información del Cliente</h2>
@@ -193,3 +208,21 @@ descargarPDFBtn.addEventListener('click', () => {
     const elemento = document.querySelector('.cotizacion-pdf');
     html2pdf().from(elemento).save('cotizacion.pdf');
 });
+
+// Agregar botón para regresar al número de cotización anterior
+const regresarCotizacionBtn = document.createElement('button');
+regresarCotizacionBtn.textContent = "Cotización Anterior";
+regresarCotizacionBtn.addEventListener('click', () => {
+    regresarNumeroCotizacion();
+    alert("El número de cotización ha sido regresado al anterior.");
+});
+document.body.appendChild(regresarCotizacionBtn);
+
+// Agregar botón para restablecer el número de cotización a "COT_0001"
+const restablecerCotizacionBtn = document.createElement('button');
+restablecerCotizacionBtn.textContent = "Restablecer Cotización";
+restablecerCotizacionBtn.addEventListener('click', () => {
+    restablecerNumeroCotizacion();
+    alert("El número de cotización ha sido restablecido a COT_0001.");
+});
+document.body.appendChild(restablecerCotizacionBtn);

@@ -1,106 +1,90 @@
 :root {
-    /* Paleta de colores: ajustable según tu preferencia */
-    --color-borde: #ccc;
     --color-fondo: #f9f9f9;
-    --color-texto-oscuro: #333;
-    --color-texto-claro: #666;
-    --color-branox: #a50000; /* Corinto para la palabra BRANOX */
+    --color-borde: #ddd;
+    --color-branox: #a50000; /* Corinto para el logo BRANOX */
+    --color-boton: #007bff;
+    --color-boton-hover: #0056b3;
+    --color-texto: #333;
 }
 
-.container {
-    max-width: 800px; /* Tamaño máximo de ancho */
-    margin: 0 auto; /* Centrado horizontal */
-    padding: 20px;
-}
-
-#cotizacionGenerada {
-    border: 1px solid var(--color-borde);
-    padding: 20px;
-    margin-top: 20px;
+body {
+    font-family: Arial, sans-serif;
     background-color: var(--color-fondo);
-}
-
-#cotizacionGenerada h2 {
-    margin-top: 0;
-}
-
-#cotizacionGenerada ul {
-    list-style: none;
+    margin: 0;
     padding: 0;
 }
 
-#cotizacionGenerada li {
-    margin-bottom: 10px;
-}
-
-#cotizacionGenerada .total {
-    font-weight: bold;
-    margin-top: 20px;
-    text-align: right;
-    font-size: 1.5em; /* Resaltar el total */
-}
-
-#cotizacionContent {
-    background-color: white;
+.container {
+    max-width: 800px;
+    margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-
-    /* Ajusta el tamaño del contenido al de la imagen enviada */
-    width: 600px;
-    height: auto;
-}
-
-.header {
-    text-align: center;
+    background-color: white;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
-    color: var(--color-branox); /* BRANOX en color corinto */
-    margin-bottom: 5px;
+    text-align: center;
+    color: var(--color-branox);
+    margin-bottom: 10px;
 }
 
 .distribuidora {
+    text-align: center;
     font-size: 1em;
-    color: var(--color-texto-claro);
+    color: var(--color-texto);
     margin-bottom: 20px;
 }
 
-.info {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 20px;
+h2 {
+    font-size: 1.5em;
+    color: var(--color-texto);
+    margin-bottom: 10px;
 }
 
-.fecha, .cotizacion-num {
-    font-size: 1em;
-    color: var(--color-texto-oscuro);
-}
-
-.total {
+label {
     font-weight: bold;
-    font-size: 1.5em; /* Texto más grande para destacar el total */
-    text-align: right;
-    margin-top: 20px;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--color-boton);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-boton-hover);
 }
 
 .botones-container {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin-top: 20px;
 }
 
-@media (max-width: 768px) {
-    .info, .botones-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .info p, .botones-container button {
-        margin-bottom: 10px;
-    }
+#listaProductos {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    background-color: var(--color-fondo);
 }

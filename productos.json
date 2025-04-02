@@ -228,6 +228,57 @@
         "precioVenta": 82.50,
         "codigo": "030",
         "categoria": "Detergentes",
-        "medida": "4 Litros"
+        "medida": "4 Litros" 
     }
+    {
+    "descripcion": "Envase oval nacarado, tapa flip top natural",
+    "precioVenta": 2.95,
+    "codigo": "ENV-OVAL-NAC",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech morado, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-MOR",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech negro, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-NEG",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech blanco, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-BLA",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase pet válvula desenroscable",
+    "precioVenta": 2.80,
+    "codigo": "ENV-PET-VAL-DES",
+    "categoria": "Envases",
+    "medida": "550 ml"
+},
+{
+    "descripcion": "Envase pet válvula con seguro",
+    "precioVenta": 2.80,
+    "codigo": "ENV-PET-VAL-SEG",
+    "categoria": "Envases",
+    "medida": "550 ml"
+},
+{
+    "descripcion": "Envase pet válvula desenroscable",
+    "precioVenta": 3.00,
+    "codigo": "ENV-PET-VAL-DES-1000",
+    "categoria": "Envases",
+    "medida": "1000 ml"
+}
+    
 ]
+

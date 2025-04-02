@@ -34,8 +34,8 @@ button {
 }
 
 .productos-info label,
-.productos-info select,
-.productos-info input {
+productos-info select,
+productos-info input {
     margin-right: 10px;
 }
 
@@ -43,31 +43,4 @@ button {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-}
-
-/* Estilos para la cotización generada */
-#cotizacionGenerada {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #f9f9f9;
-}
-
-#cotizacionGenerada h2 {
-    margin-top: 0;
-}
-
-#cotizacionGenerada ul {
-    list-style: none;
-    padding: 0;
-}
-
-#cotizacionGenerada li {
-    margin-bottom: 10px;
-}
-
-#cotizacionGenerada .total {
-    font-weight: bold;
-    margin-top: 20px;
-    text-align: right;
 }

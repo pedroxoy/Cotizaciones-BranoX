@@ -1,118 +1,117 @@
-// Referencias a los elementos del DOM
-const productoSelect = document.getElementById('producto');
-const tablaProductos = document.getElementById('listaProductos');
-const agregarProductoBtn = document.getElementById('agregarProducto');
-const cotizacionForm = document.getElementById('cotizacionForm');
-const descargarPDFBtn = document.getElementById('descargarPDF');
+ // app.js
 
-// Configurar la fecha actual
-const fechaActual = new Date().toISOString().slice(0, 10);
+ document.addEventListener("DOMContentLoaded", function () {
+     const nombreCliente = document.getElementById("nombreCliente");
+     const direccionCliente = document.getElementById("direccionCliente");
+     const nitCliente = document.getElementById("nitCliente");
+     const telefonoCliente = document.getElementById("telefonoCliente");
+     const listaProductos = document.getElementById("listaProductos");
+     const totalCotizacion = document.getElementById("totalCotizacion");
+     const cotizacionForm = document.getElementById("cotizacionForm");
+     const descargarPDF = document.getElementById("descargarPDF");
+     const volverInicio = document.getElementById("volverInicio");
+     const productoSelect = document.getElementById('producto');
+     const cantidadInput = document.getElementById('cantidad');
+     const precioInput = document.getElementById('precio');
+     const agregarProductoBtn = document.getElementById('agregarProducto');
 
-// Función para obtener el número de cotización
-function obtenerNumeroCotizacion() {
-    let numeroCotizacion = localStorage.getItem('numeroCotizacion');
-    if (numeroCotizacion === null) {
-        numeroCotizacion = 1; 
-    } else {
-        numeroCotizacion = parseInt(numeroCotizacion) + 1;
-    }
-    localStorage.setItem('numeroCotizacion', numeroCotizacion);
-    return numeroCotizacion;
-}
+     // Datos de prueba (reemplaza con tu lógica de obtención de datos - por ejemplo, desde un formulario o una API)
+     const datosCliente = {
+         nombre: "Pedro Zambrano",
+         direccion: "Ciudad",
+         nit: "12345678-9",
+         telefono: "555-1234",
+     };
 
-// Productos cargados desde productos.json
-let productosDisponibles = [];
-let productosCotizados = [];
+     // Mostrar datos del cliente
+     nombreCliente.textContent = datosCliente.nombre;
+     direccionCliente.textContent = datosCliente.direccion;
+     nitCliente.textContent = datosCliente.nit;
+     telefonoCliente.textContent = datosCliente.telefono;
 
-fetch('productos.json')
-    .then(response => response.json())
-    .then(data => {
-        productosDisponibles = data;
-        cargarProductosEnSelect();
-    })
-    .catch(error => console.error('Error al cargar productos:', error));
+     let productosCotizados = [];
+     let productosDisponibles = [];
 
-function cargarProductosEnSelect() {
-    productosDisponibles.forEach((producto, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `${producto.descripcion} (${producto.medida})`;
-        productoSelect.appendChild(option);
-    });
-}
+     fetch('productos.json')
+         .then(response => response.json())
+         .then(data => {
+             productosDisponibles = data;
+             cargarProductosEnSelect();
+         })
+         .catch(error => console.error('Error al cargar productos:', error));
 
-// Manejo de productos en la cotización
-agregarProductoBtn.addEventListener('click', () => {
-    const productoIndex = productoSelect.value;
-    const cantidad = parseInt(document.getElementById('cantidad').value);
-    const precio = parseFloat(document.getElementById('precio').value);
+     function cargarProductosEnSelect() {
+         productosDisponibles.forEach((producto, index) => {
+             const option = document.createElement('option');
+             option.value = index;
+             option.textContent = `${producto.descripcion} (${producto.medida})`;
+             productoSelect.appendChild(option);
+         });
+     }
 
-    if (productoIndex === "" || isNaN(cantidad) || isNaN(precio)) {
-        alert("Completa todos los campos antes de agregar un producto.");
-        return;
-    }
+     agregarProductoBtn.addEventListener('click', () => {
+         const productoIndex = parseInt(productoSelect.value);
+         const cantidad = parseInt(cantidadInput.value);
+         const precio = parseFloat(precioInput.value);
 
-    const producto = productosDisponibles[productoIndex];
-    const total = (cantidad * precio).toFixed(2);
-    productosCotizados.push({
-        descripcion: producto.descripcion,
-        cantidad,
-        precio,
-        total
-    });
+         if (isNaN(productoIndex) || isNaN(cantidad) || isNaN(precio)) {
+             alert("Por favor, selecciona un producto y completa la cantidad y el precio.");
+             return;
+         }
 
-    const item = document.createElement('div');
-    item.innerHTML = `<span>${producto.descripcion} (x${cantidad})</span> <span>Q ${total}</span>`;
-    tablaProductos.appendChild(item);
-});
+         const producto = productosDisponibles[productoIndex];
+         const total = cantidad * precio;
 
-// Generar la cotización
-cotizacionForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+         productosCotizados.push({
+             descripcion: producto.descripcion,
+             cantidad: cantidad,
+             precioUnitario: precio,
+             precioTotal: total.toFixed(2),
+         });
 
-    if (productosCotizados.length === 0) {
-        alert("Agrega al menos un producto.");
-        return;
-    }
+         mostrarProductos();
+         cantidadInput.value = ""; // Clear input fields
+         precioInput.value = "";
+     });
 
-    const numeroCotizacion = obtenerNumeroCotizacion();
-    const cotizacionHTML = `
-        <div>
-            <h1>BRANOX</h1>
-            <p>${fechaActual} - COT_${numeroCotizacion.toString().padStart(4, '0')}</p>
-            <h2>Productos</h2>
-            <ul>
-                ${productosCotizados.map(p => `<li>${p.descripcion} (x${p.cantidad}) - Q ${p.total}</li>`).join('')}
-            </ul>
-            <button id="volverInicio">Ir al Inicio</button>
-        </div>
-    `;
+     // Función para mostrar los productos en la tabla
+     function mostrarProductos() {
+         let total = 0;
+         listaProductos.innerHTML = ""; // Limpiar la tabla
 
-    document.body.innerHTML = cotizacionHTML;
+         productosCotizados.forEach((producto) => {
+             total += parseFloat(producto.precioTotal);
 
-    document.getElementById('volverInicio').addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
+             const fila = document.createElement("tr");
+             fila.innerHTML = `
+                 <td>${producto.descripcion}</td>
+                 <td>${producto.cantidad}</td>
+                 <td>Q ${producto.precioUnitario}</td>
+                 <td>Q ${producto.precioTotal}</td>
+             `;
+             listaProductos.appendChild(fila);
+         });
 
-    // Botón de descarga de imagen
-    const descargarImagenBtn = document.createElement('button');
-    descargarImagenBtn.textContent = "Descargar Imagen";
-    document.body.appendChild(descargarImagenBtn);
-    descargarImagenBtn.addEventListener('click', () => {
-        html2canvas(document.body).then(canvas => {
-            const enlace = document.createElement('a');
-            enlace.href = canvas.toDataURL('image/png');
-            enlace.download = 'cotizacion.png';
-            enlace.click();
-        });
-    });
+         totalCotizacion.textContent = `Q ${total.toFixed(2)}`;
+     }
 
-    // Botón de descarga de PDF
-    const descargarPDFBtn = document.createElement('button');
-    descargarPDFBtn.textContent = "Descargar PDF";
-    document.body.appendChild(descargarPDFBtn);
-    descargarPDFBtn.addEventListener('click', () => {
-        html2pdf().from(document.body).save('cotizacion.pdf');
-    });
-});
+     mostrarProductos(); // Mostrar los productos iniciales (si los hay)
 
+     // Función para generar el PDF
+     function generarPDF() {
+         descargarPDF.style.display = "block"; // Show the download button
+         const elementoCotizacion = document.querySelector(".cotizacion");
+
+         html2pdf()
+             .from(elementoCotizacion)
+             .save("cotizacion.pdf");
+     }
+
+     // Evento para el botón "Descargar PDF"
+     descargarPDF.addEventListener("click", generarPDF);
+
+     //evento para el boton "ir al inicio"
+     volverInicio.addEventListener("click", function () {
+         window.location.href = "login.html";
+     });
+ });

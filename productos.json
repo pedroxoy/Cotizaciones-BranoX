@@ -2,282 +2,281 @@
     {
         "descripcion": "Detergente para ropa Floral",
         "precioVenta": 55.00,
-        "codigo": "3965418",
+        "codigo": "DET00001",
         "categoria": "Detergentes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Detergente para ropa Floral",
         "precioVenta": 175.00,
-        "codigo": "9521074",
+        "codigo": "DET00002",
         "categoria": "Detergentes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Detergente para ropa Manzana Verde",
         "precioVenta": 55.00,
-        "codigo": "1743296",
+        "codigo": "DET00003",
         "categoria": "Detergentes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Detergente para ropa Manzana Verde",
         "precioVenta": 175.00,
-        "codigo": "7309852",
+        "codigo": "DET00004",
         "categoria": "Detergentes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Detergente para ropa Naranja",
         "precioVenta": 55.00,
-        "codigo": "2854307",
+        "codigo": "DET00005",
         "categoria": "Detergentes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Detergente para ropa Naranja",
         "precioVenta": 175.00,
-        "codigo": "8410963",
+        "codigo": "DET00006",
         "categoria": "Detergentes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Jabón líquido para trastes",
         "precioVenta": 17.50,
-        "codigo": "531864",
+        "codigo": "JAB00001",
         "categoria": "Jabones",
         "medida": "1 Litro"
     },
     {
         "descripcion": "Jabón líquido para trastes",
         "precioVenta": 45.00,
-        "codigo": "294788",
+        "codigo": "JAB00002",
         "categoria": "Jabones",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Suavizante para telas Flor de Manzana",
         "precioVenta": 70.00,
-        "codigo": "4076529",
+        "codigo": "SUA00001",
         "categoria": "Suavizantes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Suavizante para telas Flor de Manzana",
         "precioVenta": 210.00,
-        "codigo": "823491",
+        "codigo": "SUA00002",
         "categoria": "Suavizantes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Suavizante para telas Fresca Primavera",
         "precioVenta": 70.00,
-        "codigo": "5187630",
+        "codigo": "SUA00003",
         "categoria": "Suavizantes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Suavizante para telas Fresca Primavera",
         "precioVenta": 210.00,
-        "codigo": "823491",
+        "codigo": "SUA00004",
         "categoria": "Suavizantes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Suavizante para telas Suave Caricia",
         "precioVenta": 75.00,
-        "codigo": "6298741",
+        "codigo": "SUA00005",
         "categoria": "Suavizantes",
         "medida": "4 Litros"
     },
     {
         "descripcion": "Suavizante para telas Suave Caricia",
         "precioVenta": 225.00,
-        "codigo": "462372",
+        "codigo": "SUA00006",
         "categoria": "Suavizantes",
         "medida": "20 Litros"
     },
     {
         "descripcion": "Shampoo Vainilla Y Caramelo",
         "precioVenta": 45.00,
-        "codigo": "015",
+        "codigo": "CUI00001",
         "categoria": "Cuidado Personal",
-        "medida": "450ml"
+        "medida": "450 ml"
     },
     {
         "descripcion": "Shampoo Vainilla Y Caramelo",
         "precioVenta": 100.00,
-        "codigo": "016",
+        "codigo": "CUI00002",
         "categoria": "Cuidado Personal",
         "medida": "1000 ml"
     },
     {
-        "descripcion": "Acondicionador para cabello Caramelo",
+        "descripcion": "Acondicionador para Cabello Caramelo",
         "precioVenta": 55.00,
-        "codigo": "017",
+        "codigo": "CUI00003",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
         "descripcion": "Acondicionador para Cabello Fresa Mora",
         "precioVenta": 55.00,
-        "codigo": "018",
+        "codigo": "CUI00004",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
         "descripcion": "Acondicionador para Cabello Cereza",
         "precioVenta": 55.00,
-        "codigo": "019",
+        "codigo": "CUI00005",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
-        "descripcion": "Jabón liquido para manos fresa mora",
+        "descripcion": "Jabón líquido para manos Fresa Mora",
         "precioVenta": 40.00,
-        "codigo": "031",
+        "codigo": "CUI00006",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
-        "descripcion": "Jabón liquido para manos Vainilla y Caramelo",
+        "descripcion": "Jabón líquido para manos Vainilla y Caramelo",
         "precioVenta": 40.00,
-        "codigo": "032",
+        "codigo": "CUI00007",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
-        "descripcion": "Jabón liquido para manos Cereza",
+        "descripcion": "Jabón líquido para manos Cereza",
         "precioVenta": 40.00,
-        "codigo": "033",
+        "codigo": "CUI00008",
         "categoria": "Cuidado Personal",
         "medida": "450 ml"
     },
     {
         "descripcion": "Toallas Microfibra 30x30 cm",
         "precioVenta": 20.00,
-        "codigo": "020",
+        "codigo": "LIH00001",
         "categoria": "Limpieza del Hogar",
         "medida": "Paquete de 2"
     },
     {
         "descripcion": "Cepillo para Lavar Trastes",
         "precioVenta": 15.00,
-        "codigo": "021",
+        "codigo": "ACL00001",
         "categoria": "Accesorios de Limpieza",
         "medida": "Unidad"
     },
     {
         "descripcion": "Esponja Scotch-Brite Multisuperficies",
         "precioVenta": 12.50,
-        "codigo": "022",
+        "codigo": "ACL00002",
         "categoria": "Accesorios de Limpieza",
         "medida": "Unidad"
     },
     {
         "descripcion": "Esponja Doble Uso (Suave y Abrasiva)",
         "precioVenta": 10.00,
-        "codigo": "023",
+        "codigo": "ACL00003",
         "categoria": "Accesorios de Limpieza",
-        "medida": "Paquete de 3"
+        "medida": "3 unidades"
     },
     {
         "descripcion": "Detergente en Polvo Limón",
         "precioVenta": 75.00,
-        "codigo": "024",
+        "codigo": "DET00007",
         "categoria": "Detergentes",
         "medida": "5 Kg"
     },
     {
         "descripcion": "Limpiador Multiusos Floral",
         "precioVenta": 30.00,
-        "codigo": "025",
+        "codigo": "LIH00002",
         "categoria": "Limpieza del Hogar",
         "medida": "1 Litro"
     },
     {
         "descripcion": "Jabón Líquido Antibacterial Manos",
         "precioVenta": 25.00,
-        "codigo": "026",
+        "codigo": "CUI00009",
         "categoria": "Cuidado Personal",
         "medida": "500 ml"
     },
     {
         "descripcion": "Ambientador Aroma Lavanda",
         "precioVenta": 20.00,
-        "codigo": "027",
+        "codigo": "ARO00001",
         "categoria": "Aromatizantes",
         "medida": "300 ml"
     },
     {
         "descripcion": "Limpiador de Vidrios con Alcohol",
         "precioVenta": 28.00,
-        "codigo": "028",
+        "codigo": "LIH00003",
         "categoria": "Limpieza del Hogar",
         "medida": "750 ml"
     },
     {
         "descripcion": "Desinfectante Pino Concentrado",
         "precioVenta": 35.00,
-        "codigo": "029",
+        "codigo": "LIH00004",
         "categoria": "Limpieza del Hogar",
         "medida": "1 Litro"
     },
-    {
+        {
         "descripcion": "Detergente Líquido Lavanda",
         "precioVenta": 82.50,
-        "codigo": "030",
+        "codigo": "DET00008",
         "categoria": "Detergentes",
         "medida": "4 Litros" 
     },
     {
-    "descripcion": "Envase oval nacarado, tapa flip top natural",
-    "precioVenta": 2.95,
-    "codigo": "ENV-OVAL-NAC",
-    "categoria": "Envases",
-    "medida": "400 ml"
-},
-{
-    "descripcion": "Envase capitech morado, tapa flip top natural",
-    "precioVenta": 2.90,
-    "codigo": "ENV-CAP-MOR",
-    "categoria": "Envases",
-    "medida": "400 ml"
-},
-{
-    "descripcion": "Envase capitech negro, tapa flip top natural",
-    "precioVenta": 2.90,
-    "codigo": "ENV-CAP-NEG",
-    "categoria": "Envases",
-    "medida": "400 ml"
-},
-{
-    "descripcion": "Envase capitech blanco, tapa flip top natural",
-    "precioVenta": 2.90,
-    "codigo": "ENV-CAP-BLA",
-    "categoria": "Envases",
-    "medida": "400 ml"
-},
-{
-    "descripcion": "Envase pet válvula desenroscable",
-    "precioVenta": 2.80,
-    "codigo": "ENV-PET-VAL-DES",
-    "categoria": "Envases",
-    "medida": "550 ml"
-},
-{
-    "descripcion": "Envase pet válvula con seguro",
-    "precioVenta": 2.80,
-    "codigo": "ENV-PET-VAL-SEG",
-    "categoria": "Envases",
-    "medida": "550 ml"
-},
-{
-    "descripcion": "Envase pet válvula desenroscable",
-    "precioVenta": 3.00,
-    "codigo": "ENV-PET-VAL-DES-1000",
-    "categoria": "Envases",
-    "medida": "1000 ml"
-}
-    
-] 
+        "descripcion": "Envase oval nacarado, tapa flip top natural",
+        "precioVenta": 2.95,
+        "codigo": "ENV00001",
+        "categoria": "Envases",
+        "medida": "400 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase capitech morado, tapa flip top natural",
+        "precioVenta": 2.90,
+        "codigo": "ENV00002",
+        "categoria": "Envases",
+        "medida": "400 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase capitech negro, tapa flip top natural",
+        "precioVenta": 2.90,
+        "codigo": "ENV00003",
+        "categoria": "Envases",
+        "medida": "400 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase capitech blanco, tapa flip top natural",
+        "precioVenta": 2.90,
+        "codigo": "ENV00004",
+        "categoria": "Envases",
+        "medida": "400 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase pet válvula desenroscable",
+        "precioVenta": 2.80,
+        "codigo": "ENV00005",
+        "categoria": "Envases",
+        "medida": "550 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase pet válvula con seguro",
+        "precioVenta": 2.80,
+        "codigo": "ENV00006",
+        "categoria": "Envases",
+        "medida": "550 ml, Unidad"
+    },
+    {
+        "descripcion": "Envase pet válvula desenroscable",
+        "precioVenta": 3.00,
+        "codigo": "ENV00007",
+        "categoria": "Envases",
+        "medida": "1000 ml, Unidad"
+    }
+]

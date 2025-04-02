@@ -1,117 +1,178 @@
- // app.js
+document.addEventListener("DOMContentLoaded", function () {
+    const nombreCliente = document.getElementById("nombreCliente");
+    const direccionCliente = document.getElementById("direccionCliente");
+    const nitCliente = document.getElementById("nitCliente");
+    const telefonoCliente = document.getElementById("telefonoCliente");
+    const listaProductos = document.getElementById("listaProductos");
+    const totalCotizacion = document.getElementById("totalCotizacion");
+    const cotizacionForm = document.getElementById("cotizacionForm");
+    const descargarPDF = document.getElementById("descargarPDF");
+    const volverInicio = document.getElementById("volverInicio");
+    const productoSelect = document.getElementById('producto');
+    const cantidadInput = document.getElementById('cantidad');
+    const agregarProductoBtn = document.getElementById('agregarProducto');
+    const generarCotizacionBtn = document.getElementById('generarCotizacion');
+    const cotizacionGenerada = document.getElementById('cotizacionGenerada');
+    const formularioCotizacion = document.getElementById('formularioCotizacion');
 
- document.addEventListener("DOMContentLoaded", function () {
-     const nombreCliente = document.getElementById("nombreCliente");
-     const direccionCliente = document.getElementById("direccionCliente");
-     const nitCliente = document.getElementById("nitCliente");
-     const telefonoCliente = document.getElementById("telefonoCliente");
-     const listaProductos = document.getElementById("listaProductos");
-     const totalCotizacion = document.getElementById("totalCotizacion");
-     const cotizacionForm = document.getElementById("cotizacionForm");
-     const descargarPDF = document.getElementById("descargarPDF");
-     const volverInicio = document.getElementById("volverInicio");
-     const productoSelect = document.getElementById('producto');
-     const cantidadInput = document.getElementById('cantidad');
-     const precioInput = document.getElementById('precio');
-     const agregarProductoBtn = document.getElementById('agregarProducto');
+    let productosCotizados = [];
+    let productosDisponibles = [];
 
-     // Datos de prueba (reemplaza con tu lógica de obtención de datos - por ejemplo, desde un formulario o una API)
-     const datosCliente = {
-         nombre: "Pedro Zambrano",
-         direccion: "Ciudad",
-         nit: "12345678-9",
-         telefono: "555-1234",
-     };
+    fetch('productos.json')
+        .then(response => response.json())
+        .then(data => {
+            productosDisponibles = data;
+            cargarProductosEnSelect();
+        })
+        .catch(error => console.error('Error al cargar productos:', error));
 
-     // Mostrar datos del cliente
-     nombreCliente.textContent = datosCliente.nombre;
-     direccionCliente.textContent = datosCliente.direccion;
-     nitCliente.textContent = datosCliente.nit;
-     telefonoCliente.textContent = datosCliente.telefono;
+    function cargarProductosEnSelect() {
+        productosDisponibles.forEach((producto, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${producto.descripcion} (${producto.medida})`;
+            productoSelect.appendChild(option);
+        });
+    }
 
-     let productosCotizados = [];
-     let productosDisponibles = [];
+    agregarProductoBtn.addEventListener('click', () => {
+        const productoIndex = parseInt(productoSelect.value);
+        const cantidad = parseInt(cantidadInput.value);
 
-     fetch('productos.json')
-         .then(response => response.json())
-         .then(data => {
-             productosDisponibles = data;
-             cargarProductosEnSelect();
-         })
-         .catch(error => console.error('Error al cargar productos:', error));
+        if (isNaN(productoIndex) || isNaN(cantidad)) {
+            alert("Por favor, selecciona un producto y completa la cantidad.");
+            return;
+        }
 
-     function cargarProductosEnSelect() {
-         productosDisponibles.forEach((producto, index) => {
-             const option = document.createElement('option');
-             option.value = index;
-             option.textContent = `${producto.descripcion} (${producto.medida})`;
-             productoSelect.appendChild(option);
-         });
-     }
+        const producto = productosDisponibles[productoIndex];
+        const total = cantidad * producto.precioVenta;
 
-     agregarProductoBtn.addEventListener('click', () => {
-         const productoIndex = parseInt(productoSelect.value);
-         const cantidad = parseInt(cantidadInput.value);
-         const precio = parseFloat(precioInput.value);
+        productosCotizados.push({
+            descripcion: producto.descripcion,
+            cantidad: cantidad,
+            precioUnitario: producto.precioVenta,
+            precioTotal: total.toFixed(2),
+        });
 
-         if (isNaN(productoIndex) || isNaN(cantidad) || isNaN(precio)) {
-             alert("Por favor, selecciona un producto y completa la cantidad y el precio.");
-             return;
-         }
+        mostrarProductos();
+        cantidadInput.value = ""; // Clear input fields
+    });
 
-         const producto = productosDisponibles[productoIndex];
-         const total = cantidad * precio;
+    // Función para mostrar los productos en la tabla
+    function mostrarProductos() {
+        let total = 0;
+        listaProductos.innerHTML = ""; // Limpiar la tabla
 
-         productosCotizados.push({
-             descripcion: producto.descripcion,
-             cantidad: cantidad,
-             precioUnitario: precio,
-             precioTotal: total.toFixed(2),
-         });
+        productosCotizados.forEach((producto) => {
+            total += parseFloat(producto.precioTotal);
 
-         mostrarProductos();
-         cantidadInput.value = ""; // Clear input fields
-         precioInput.value = "";
-     });
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td>${producto.descripcion}</td>
+                <td>${producto.cantidad}</td>
+                <td>Q ${producto.precioUnitario}</td>
+                <td>Q ${producto.precioTotal}</td>
+            `;
+            listaProductos.appendChild(fila);
+        });
 
-     // Función para mostrar los productos en la tabla
-     function mostrarProductos() {
-         let total = 0;
-         listaProductos.innerHTML = ""; // Limpiar la tabla
+        totalCotizacion.textContent = `Q ${total.toFixed(2)}`;
+    }
 
-         productosCotizados.forEach((producto) => {
-             total += parseFloat(producto.precioTotal);
+    mostrarProductos(); // Mostrar los productos iniciales (si los hay)
 
-             const fila = document.createElement("tr");
-             fila.innerHTML = `
-                 <td>${producto.descripcion}</td>
-                 <td>${producto.cantidad}</td>
-                 <td>Q ${producto.precioUnitario}</td>
-                 <td>Q ${producto.precioTotal}</td>
-             `;
-             listaProductos.appendChild(fila);
-         });
+    generarCotizacionBtn.addEventListener('click', (e) => {
+        e.preventDefault();
 
-         totalCotizacion.textContent = `Q ${total.toFixed(2)}`;
-     }
+        // Crear el HTML de la cotización
+        let cotizacionHTML = `
+            <div class="cotizacion">
+                <header>
+                    <h1 class="branox-header">BRANOX</h1>
+                    <p>Distribuidora de productos de limpieza</p>
+                    <p id="fechaCotizacion"></p>
+                    <p id="numeroCotizacion"></p>
+                </header>
 
-     mostrarProductos(); // Mostrar los productos iniciales (si los hay)
+                <h2>Información del Cliente</h2>
+                <div class="cliente-info">
+                    <p><strong>Nombre:</strong> ${nombreCliente.value}</p>
+                    <p><strong>Dirección:</strong> ${direccionCliente.value}</p>
+                    <p><strong>NIT:</strong> ${nitCliente.value}</p>
+                    <p><strong>Teléfono:</strong> ${telefonoCliente.value}</p>
+                </div>
 
-     // Función para generar el PDF
-     function generarPDF() {
-         descargarPDF.style.display = "block"; // Show the download button
-         const elementoCotizacion = document.querySelector(".cotizacion");
+                <h2>Productos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unidad</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaProductosGenerada">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><strong>Total:</strong></td>
+                            <td id="totalCotizacionGenerada">Q 0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        `;
 
-         html2pdf()
-             .from(elementoCotizacion)
-             .save("cotizacion.pdf");
-     }
+        // Llenar la tabla de productos en la cotización generada
+        let total = 0;
+        let listaProductosGenerada = "";
+        productosCotizados.forEach((producto) => {
+            total += parseFloat(producto.precioTotal);
+            listaProductosGenerada += `
+                <tr>
+                    <td>${producto.descripcion}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>Q ${producto.precioUnitario}</td>
+                    <td>Q ${producto.precioTotal}</td>
+                </tr>
+            `;
+        });
 
-     // Evento para el botón "Descargar PDF"
-     descargarPDF.addEventListener("click", generarPDF);
+        cotizacionHTML = cotizacionHTML.replace('<tbody id="listaProductosGenerada"></tbody>', `<tbody id="listaProductosGenerada">${listaProductosGenerada}</tbody>`);
+        cotizacionHTML = cotizacionHTML.replace('<td id="totalCotizacionGenerada">Q 0.00</td>', `<td id="totalCotizacionGenerada">Q ${total.toFixed(2)}</td>`);
 
-     //evento para el boton "ir al inicio"
-     volverInicio.addEventListener("click", function () {
-         window.location.href = "login.html";
-     });
- });
+        cotizacionGenerada.innerHTML = cotizacionHTML;
+        cotizacionGenerada.style.display = 'block';
+        formularioCotizacion.style.display = 'none';
+
+        // Obtener la fecha actual y el número de cotización (puedes generarlo dinámicamente)
+        const fechaActual = new Date().toLocaleDateString();
+        const numeroCotizacion = "Cotización #9"; // Reemplaza con tu lógica
+
+        // Mostrar la fecha y el número de cotización en el HTML
+        document.getElementById("fechaCotizacion").textContent = fechaActual;
+        document.getElementById("numeroCotizacion").textContent = numeroCotizacion;
+
+        // Generar el PDF
+        generarPDF();
+    });
+
+    // Función para generar el PDF
+    function generarPDF() {
+        descargarPDF.style.display = "block"; // Show the download button
+        const elementoCotizacion = document.querySelector(".cotizacion");
+
+        html2pdf()
+            .from(elementoCotizacion)
+            .save("cotizacion.pdf");
+    }
+
+    // Evento para el botón "Descargar PDF"
+    descargarPDF.addEventListener("click", generarPDF);
+
+    //evento para el boton "ir al inicio"
+    volverInicio.addEventListener("click", function () {
+        window.location.href = "login.html";
+    });
+});

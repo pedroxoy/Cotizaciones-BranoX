@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const listaProductosDiv = document.getElementById('listaProductos');
     const agregarProductoBtn = document.getElementById('agregarProducto');
     const generarCotizacionBtn = document.getElementById('generarCotizacion');
-    const cotizacionGeneradaDiv = document.getElementById('cotizacionGenerada');
     const volverInicioBtn = document.getElementById('volverInicio');
-    const formularioCotizacionDiv = document.getElementById('formularioCotizacion');
 
     let productosAgregados = [];
 
@@ -41,39 +39,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generar cotización
     generarCotizacionBtn.addEventListener('click', function() {
-        const nombreCliente = document.getElementById('nombreCliente').value;
-        const direccionCliente = document.getElementById('direccionCliente').value;
-        const nitCliente = document.getElementById('nitCliente').value;
-        const telefonoCliente = document.getElementById('telefonoCliente').value;
-
-        let cotizacionHTML = `
-            <h2>Cotización para ${nombreCliente}</h2>
-            <p>Dirección: ${direccionCliente}</p>
-            <p>NIT: ${nitCliente}</p>
-            <p>Teléfono: ${telefonoCliente}</p>
-            <h3>Productos:</h3>
-            <ul>
-        `;
-
-        let totalCotizacion = 0;
-        productosAgregados.forEach(item => {
-            const subtotal = item.producto.precioVenta * item.cantidad;
-            cotizacionHTML += `<li>${item.producto.descripcion} - Cantidad: ${item.cantidad} - Precio: $${subtotal}</li>`;
-            totalCotizacion += subtotal;
-        });
-
-        cotizacionHTML += `</ul><p>Total: $${totalCotizacion}</p>`;
-        cotizacionGeneradaDiv.innerHTML = cotizacionHTML;
-
-        formularioCotizacionDiv.style.display = 'none';
-        cotizacionGeneradaDiv.style.display = 'block';
+        // Aquí puedes agregar la lógica para generar la cotización
+        alert('Cotización generada (funcionalidad no implementada)');
     });
 
     // Volver al inicio
     volverInicioBtn.addEventListener('click', function() {
-        formularioCotizacionDiv.style.display = 'block';
-        cotizacionGeneradaDiv.style.display = 'none';
-        productosAgregados = [];
-        listaProductosDiv.innerHTML = '';
+        // Aquí puedes agregar la lógica para volver al inicio
+        alert('Ir al inicio (funcionalidad no implementada)');
     });
 });

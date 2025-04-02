@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
         productosDisponibles.forEach((producto, index) => {
             const option = document.createElement('option');
             option.value = index;
-            // Usar las propiedades correctas de tus objetos de producto
             option.textContent = `${producto.descripcion} (${producto.medida})`;
             productoSelect.appendChild(option);
         });

@@ -1,113 +1,284 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const nombreCliente = document.getElementById("nombreCliente");
-    const direccionCliente = document.getElementById("direccionCliente");
-    const nitCliente = document.getElementById("nitCliente");
-    const telefonoCliente = document.getElementById("telefonoCliente");
-    const listaProductos = document.getElementById("listaProductos");
-    const totalCotizacion = document.getElementById("totalCotizacion");
-    const cotizacionForm = document.getElementById("cotizacionForm");
-    const descargarPDF = document.getElementById("descargarPDF");
-    const volverInicio = document.getElementById("volverInicio");
-    const productoSelect = document.getElementById('producto');
-    const cantidadInput = document.getElementById('cantidad');
-    const precioInput = document.getElementById('precio');
-    const agregarProductoBtn = document.getElementById('agregarProducto');
-
-    // Datos de prueba (reemplaza con tu lógica de obtención de datos)
-    const datosCliente = {
-        nombre: "Pedro Zambrano",
-        direccion: "Ciudad",
-        nit: "12345678-9",
-        telefono: "555-1234",
-    };
-
-    // Mostrar datos del cliente
-    nombreCliente.textContent = datosCliente.nombre;
-    direccionCliente.textContent = datosCliente.direccion;
-    nitCliente.textContent = datosCliente.nit;
-    telefonoCliente.textContent = datosCliente.telefono;
-
-    let productosCotizados = [];
-    let productosDisponibles = [];
-
-    fetch('productos.json')
-        .then(response => response.json())
-        .then(data => {
-            productosDisponibles = data;
-            cargarProductosEnSelect();
-        })
-        .catch(error => console.error('Error al cargar productos:', error));
-
-    function cargarProductosEnSelect() {
-        productosDisponibles.forEach((producto, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${producto.descripcion} (${producto.medida})`;
-            productoSelect.appendChild(option);
-        });
-    }
-
-    agregarProductoBtn.addEventListener('click', () => {
-        const productoIndex = parseInt(productoSelect.value);
-        const cantidad = parseInt(cantidadInput.value);
-
-        if (isNaN(productoIndex) || isNaN(cantidad)) {
-            alert("Por favor, selecciona un producto y completa la cantidad.");
-            return;
-        }
-
-        const producto = productosDisponibles[productoIndex];
-        const total = cantidad * producto.precioVenta;
-
-        productosCotizados.push({
-            descripcion: producto.descripcion,
-            cantidad: cantidad,
-            precioUnitario: producto.precioVenta,
-            precioTotal: total.toFixed(2),
-        });
-
-        mostrarProductos();
-        cantidadInput.value = ""; // Clear input fields
-    });
-
-    // Función para mostrar los productos en la tabla
-    function mostrarProductos() {
-        let total = 0;
-        listaProductos.innerHTML = ""; // Limpiar la tabla
-
-        productosCotizados.forEach((producto) => {
-            total += parseFloat(producto.precioTotal);
-
-            const fila = document.createElement("tr");
-            fila.innerHTML = `
-                <td>${producto.descripcion}</td>
-                <td>${producto.cantidad}</td>
-                <td>Q ${producto.precioUnitario}</td>
-                <td>Q ${producto.precioTotal}</td>
-            `;
-            listaProductos.appendChild(fila);
-        });
-
-        totalCotizacion.textContent = `Q ${total.toFixed(2)}`;
-    }
-
-    mostrarProductos(); // Mostrar los productos iniciales (si los hay)
-
-    // Función para generar el PDF
-    function generarPDF() {
-        descargarPDF.style.display = "block"; // Show the download button
-        const elementoCotizacion = document.querySelector(".cotizacion");
-
-        html2pdf()
-            .from(elementoCotizacion)
-            .save("cotizacion.pdf");
-    }
-
-    // Evento para el botón "Descargar PDF"
-    descargarPDF.addEventListener("click", generarPDF);
-
-    //evento para el boton "ir al inicio"
-    volverInicio.addEventListener("click", function () {
-        window.location.href = "login.html";
-    });
-});
+[
+    {
+        "descripcion": "Detergente para ropa Floral",
+        "precioVenta": 55.00,
+        "codigo": "3965418",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Floral",
+        "precioVenta": 175.00,
+        "codigo": "9521074",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Manzana Verde",
+        "precioVenta": 55.00,
+        "codigo": "1743296",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Manzana Verde",
+        "precioVenta": 175.00,
+        "codigo": "7309852",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Naranja",
+        "precioVenta": 55.00,
+        "codigo": "2854307",
+        "categoria": "Detergentes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Detergente para ropa Naranja",
+        "precioVenta": 175.00,
+        "codigo": "8410963",
+        "categoria": "Detergentes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Jabón líquido para trastes",
+        "precioVenta": 17.50,
+        "codigo": "531864",
+        "categoria": "Jabones",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Jabón líquido para trastes",
+        "precioVenta": 45.00,
+        "codigo": "294788",
+        "categoria": "Jabones",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Flor de Manzana",
+        "precioVenta": 70.00,
+        "codigo": "4076529",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Flor de Manzana",
+        "precioVenta": 210.00,
+        "codigo": "823491",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Fresca Primavera",
+        "precioVenta": 70.00,
+        "codigo": "5187630",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Fresca Primavera",
+        "precioVenta": 210.00,
+        "codigo": "823491",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Suave Caricia",
+        "precioVenta": 75.00,
+        "codigo": "6298741",
+        "categoria": "Suavizantes",
+        "medida": "4 Litros"
+    },
+    {
+        "descripcion": "Suavizante para telas Suave Caricia",
+        "precioVenta": 225.00,
+        "codigo": "462372",
+        "categoria": "Suavizantes",
+        "medida": "20 Litros"
+    },
+    {
+        "descripcion": "Shampoo Vainilla Y Caramelo",
+        "precioVenta": 45.00,
+        "codigo": "015",
+        "categoria": "Cuidado Personal",
+        "medida": "450ml"
+    },
+    {
+        "descripcion": "Shampoo Vainilla Y Caramelo",
+        "precioVenta": 100.00,
+        "codigo": "016",
+        "categoria": "Cuidado Personal",
+        "medida": "1000 ml"
+    },
+    {
+        "descripcion": "Acondicionador para cabello Caramelo",
+        "precioVenta": 55.00,
+        "codigo": "017",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Acondicionador para Cabello Fresa Mora",
+        "precioVenta": 55.00,
+        "codigo": "018",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Acondicionador para Cabello Cereza",
+        "precioVenta": 55.00,
+        "codigo": "019",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos fresa mora",
+        "precioVenta": 40.00,
+        "codigo": "031",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos Vainilla y Caramelo",
+        "precioVenta": 40.00,
+        "codigo": "032",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos Cereza",
+        "precioVenta": 40.00,
+        "codigo": "033",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Toallas Microfibra 30x30 cm",
+        "precioVenta": 20.00,
+        "codigo": "020",
+        "categoria": "Limpieza del Hogar",
+        "medida": "Paquete de 2"
+    },
+    {
+        "descripcion": "Cepillo para Lavar Trastes",
+        "precioVenta": 15.00,
+        "codigo": "021",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Esponja Scotch-Brite Multisuperficies",
+        "precioVenta": 12.50,
+        "codigo": "022",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Esponja Doble Uso (Suave y Abrasiva)",
+        "precioVenta": 10.00,
+        "codigo": "023",
+        "categoria": "Accesorios de Limpieza",
+        "medida": "Paquete de 3"
+    },
+    {
+        "descripcion": "Detergente en Polvo Limón",
+        "precioVenta": 75.00,
+        "codigo": "024",
+        "categoria": "Detergentes",
+        "medida": "5 Kg"
+    },
+    {
+        "descripcion": "Limpiador Multiusos Floral",
+        "precioVenta": 30.00,
+        "codigo": "025",
+        "categoria": "Limpieza del Hogar",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Jabón Líquido Antibacterial Manos",
+        "precioVenta": 25.00,
+        "codigo": "026",
+        "categoria": "Cuidado Personal",
+        "medida": "500 ml"
+    },
+    {
+        "descripcion": "Ambientador Aroma Lavanda",
+        "precioVenta": 20.00,
+        "codigo": "027",
+        "categoria": "Aromatizantes",
+        "medida": "300 ml"
+    },
+    {
+        "descripcion": "Limpiador de Vidrios con Alcohol",
+        "precioVenta": 28.00,
+        "codigo": "028",
+        "categoria": "Limpieza del Hogar",
+        "medida": "750 ml"
+    },
+    {
+        "descripcion": "Desinfectante Pino Concentrado",
+        "precioVenta": 35.00,
+        "codigo": "029",
+        "categoria": "Limpieza del Hogar",
+        "medida": "1 Litro"
+    },
+    {
+        "descripcion": "Detergente Líquido Lavanda",
+        "precioVenta": 82.50,
+        "codigo": "030",
+        "categoria": "Detergentes",
+        "medida": "4 Litros" 
+    },
+    {
+    "descripcion": "Envase oval nacarado, tapa flip top natural",
+    "precioVenta": 2.95,
+    "codigo": "ENV-OVAL-NAC",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech morado, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-MOR",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech negro, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-NEG",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase capitech blanco, tapa flip top natural",
+    "precioVenta": 2.90,
+    "codigo": "ENV-CAP-BLA",
+    "categoria": "Envases",
+    "medida": "400 ml"
+},
+{
+    "descripcion": "Envase pet válvula desenroscable",
+    "precioVenta": 2.80,
+    "codigo": "ENV-PET-VAL-DES",
+    "categoria": "Envases",
+    "medida": "550 ml"
+},
+{
+    "descripcion": "Envase pet válvula con seguro",
+    "precioVenta": 2.80,
+    "codigo": "ENV-PET-VAL-SEG",
+    "categoria": "Envases",
+    "medida": "550 ml"
+},
+{
+    "descripcion": "Envase pet válvula desenroscable",
+    "precioVenta": 3.00,
+    "codigo": "ENV-PET-VAL-DES-1000",
+    "categoria": "Envases",
+    "medida": "1000 ml"
+}
+    
+] 
+Este

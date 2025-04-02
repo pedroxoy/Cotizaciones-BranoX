@@ -1,201 +1,66 @@
-/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
+    margin: 20px;
 }
 
-/* Contenedor principal angosto */
-.container-narrow {
-    background: #ffffff;
-    padding: 20px;
-    margin: 20px auto;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    max-width: 400px;
+h2 {
+    margin-top: 20px;
 }
 
-/* Encabezado */
-header h1 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #007BFF;
-}
-
-header p {
-    text-align: center;
-    margin: 0;
-    font-size: 14px;
-}
-
-/* Información de cotización */
-.info-cotizacion {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.info-cotizacion p {
-    margin: 2px 0;
-}
-
-/* Formulario e información del cliente */
-label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #555;
-    font-size: 14px;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-/* Botones */
-button {
-    padding: 8px 16px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Lista de productos */
-.producto-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-    margin: 5px 0;
-    padding: 5px 0;
-}
-
-.producto-descripcion {
-    flex: 1;
-    text-align: left;
-    font-size: 14px;
-    color: #333;
-}
-
-.producto-precios {
-    flex: 0 0 100px;
-    text-align: right;
-    font-size: 14px;
-    font-weight: bold;
-    color: #007BFF;
-}
-
-/* Botón de eliminación */
-.eliminar-producto {
-    background: #e74c3c;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-.eliminar-producto:hover {
-    background: #c0392b;
-}
-
-/* Diseño responsivo para dispositivos pequeños */
-@media (max-width: 480px) {
-    .container-narrow {
-        max-width: 320px;
-    }
-
-    header h1 {
-        font-size: 20px;
-    }
-
-    .info-cotizacion {
-        font-size: 12px;
-    }
-}
-
-/* Estilos para el PDF */
-.cotizacion-pdf {
-    width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-.header-pdf {
-    text-align: center;
+.cliente-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-.header-pdf h1 {
-    font-size: 24px;
-    margin: 0;
-    font-family: 'Montserrat Black', sans-serif;
-    color: #FF0000;
-    font-weight: 900;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-}
-
-.header-pdf p {
-    margin: 5px 0;
-}
-
-.info-pdf {
-    display: flex;
-    justify-content: space-between;
+.producto-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-.cliente-pdf h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.cliente-pdf p {
-    margin: 5px 0;
-}
-
-.productos-pdf h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.productos-pdf table {
+table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.productos-pdf th,
-.productos-pdf td {
-    border-bottom: 1px solid #ddd;
+table, th, td {
+    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.productos-pdf th {
+th {
+    background-color: #f2f2f2;
+}
+
+#totalCotizacion {
     font-weight: bold;
 }
 
-.total-pdf {
-    text-align: right;
+.cotizacion {
+    border: 1px solid #ddd;
+    padding: 20px;
     margin-top: 20px;
+}
+
+.cotizacion header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cotizacion h1 {
+    color: #007bff;
+}
+
+#descargarPDF, #volverInicio {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
 }

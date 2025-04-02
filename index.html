@@ -5,67 +5,41 @@
     <title>Cotización BRANOX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Verificar si el usuario está autenticado
-        const usuarioAutenticado = sessionStorage.getItem("autenticado");
-        if (!usuarioAutenticado) {
-            window.location.href = "login.html"; // Redirige al inicio de sesión
-        }
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <div class="cotizacion">
-        <header>
-            <h1 class="branox-header">BRANOX</h1>
-            <p>Distribuidora de productos de limpieza</p>
-            <p id="fechaCotizacion"></p>
-            <p id="numeroCotizacion"></p>
-        </header>
-
+    <div id="formularioCotizacion">
         <h2>Información del Cliente</h2>
         <div class="cliente-info">
-            <p><strong>Nombre:</strong> <span id="nombreCliente"></span></p>
-            <p><strong>Dirección:</strong> <span id="direccionCliente"></span></p>
-            <p><strong>NIT:</strong> <span id="nitCliente"></span></p>
-            <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
+            <label for="nombreCliente">Nombre:</label>
+            <input type="text" id="nombreCliente" name="nombreCliente" required>
+            <label for="direccionCliente">Dirección:</label>
+            <input type="text" id="direccionCliente" name="direccionCliente" required>
+            <label for="nitCliente">NIT:</label>
+            <input type="text" id="nitCliente" name="nitCliente" required>
+            <label for="telefonoCliente">Teléfono:</label>
+            <input type="text" id="telefonoCliente" name="telefonoCliente" required>
         </div>
 
         <h2>Productos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unidad</th>
-                    <th>Precio Total</th>
-                </tr>
-            </thead>
-            <tbody id="listaProductos">
-                </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3"><strong>Total:</strong></td>
-                    <td id="totalCotizacion">Q 0.00</td>
-                </tr>
-            </tfoot>
-        </table>
+        <label for="producto">Producto:</label>
+        <select id="producto" name="producto"></select>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+        <button type="button" id="agregarProducto">Agregar Producto</button>
 
-        <button id="descargarPDF" style="display: none;">Descargar PDF</button>
+        <h2>Lista de Productos</h2>
+        <div id="listaProductos"></div>
+
+        <button type="submit" id="generarCotizacion">Generar Cotización</button>
     </div>
+
+    <div id="cotizacionGenerada" style="display: none;">
+        </div>
 
     <button id="volverInicio">Ir al Inicio</button>
 
     <script src="app.js"></script>
-    <script>
-        // Obtener la fecha actual y el número de cotización (puedes generarlo dinámicamente)
-        const fechaActual = new Date().toLocaleDateString();
-        const numeroCotizacion = "Cotización #9"; // Reemplaza con tu lógica
-
-        // Mostrar la fecha y el número de cotización en el HTML
-        document.getElementById("fechaCotizacion").textContent = fechaActual;
-        document.getElementById("numeroCotizacion").textContent = numeroCotizacion;
-    </script>
 </body>
 </html>

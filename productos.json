@@ -98,107 +98,135 @@
         "medida": "20 Litros"
     },
     {
-        "descripcion": "Shampoo Avena y Miel",
+        "descripcion": "Shampoo Vainilla Y Caramelo",
         "precioVenta": 45.00,
         "codigo": "015",
         "categoria": "Cuidado Personal",
-        "medida": "500 ml"
+        "medida": "450ml"
     },
     {
-        "descripcion": "Shampoo Acondicionador Aloe Vera",
-        "precioVenta": 50.00,
+        "descripcion": "Shampoo Vainilla Y Caramelo",
+        "precioVenta": 100.00,
         "codigo": "016",
         "categoria": "Cuidado Personal",
-        "medida": "500 ml"
+        "medida": "1000 ml"
     },
     {
-        "descripcion": "Acondicionador Cabello Keratina",
+        "descripcion": "Acondicionador para cabello Caramelo",
         "precioVenta": 55.00,
         "codigo": "017",
         "categoria": "Cuidado Personal",
-        "medida": "500 ml"
+        "medida": "450 ml"
     },
     {
-        "descripcion": "Acondicionador Cabello Brillo Natural",
-        "precioVenta": 60.00,
+        "descripcion": "Acondicionador para Cabello Fresa Mora",
+        "precioVenta": 55.00,
         "codigo": "018",
         "categoria": "Cuidado Personal",
-        "medida": "500 ml"
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Acondicionador para Cabello Cereza",
+        "precioVenta": 55.00,
+        "codigo": "019",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos fresa mora",
+        "precioVenta": 40.00,
+        "codigo": "031",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos Vainilla y Caramelo",
+        "precioVenta": 40.00,
+        "codigo": "032",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
+    },
+    {
+        "descripcion": "Jabón liquido para manos Cereza",
+        "precioVenta": 40.00,
+        "codigo": "033",
+        "categoria": "Cuidado Personal",
+        "medida": "450 ml"
     },
     {
         "descripcion": "Toallas Microfibra 30x30 cm",
         "precioVenta": 20.00,
-        "codigo": "019",
+        "codigo": "020",
         "categoria": "Limpieza del Hogar",
         "medida": "Paquete de 2"
     },
     {
         "descripcion": "Cepillo para Lavar Trastes",
         "precioVenta": 15.00,
-        "codigo": "020",
+        "codigo": "021",
         "categoria": "Accesorios de Limpieza",
         "medida": "Unidad"
     },
     {
         "descripcion": "Esponja Scotch-Brite Multisuperficies",
         "precioVenta": 12.50,
-        "codigo": "021",
+        "codigo": "022",
         "categoria": "Accesorios de Limpieza",
         "medida": "Unidad"
     },
     {
         "descripcion": "Esponja Doble Uso (Suave y Abrasiva)",
         "precioVenta": 10.00,
-        "codigo": "022",
+        "codigo": "023",
         "categoria": "Accesorios de Limpieza",
         "medida": "Paquete de 3"
     },
     {
         "descripcion": "Detergente en Polvo Limón",
         "precioVenta": 75.00,
-        "codigo": "023",
+        "codigo": "024",
         "categoria": "Detergentes",
         "medida": "5 Kg"
     },
     {
         "descripcion": "Limpiador Multiusos Floral",
         "precioVenta": 30.00,
-        "codigo": "024",
+        "codigo": "025",
         "categoria": "Limpieza del Hogar",
         "medida": "1 Litro"
     },
     {
         "descripcion": "Jabón Líquido Antibacterial Manos",
         "precioVenta": 25.00,
-        "codigo": "025",
+        "codigo": "026",
         "categoria": "Cuidado Personal",
         "medida": "500 ml"
     },
     {
         "descripcion": "Ambientador Aroma Lavanda",
         "precioVenta": 20.00,
-        "codigo": "026",
+        "codigo": "027",
         "categoria": "Aromatizantes",
         "medida": "300 ml"
     },
     {
         "descripcion": "Limpiador de Vidrios con Alcohol",
         "precioVenta": 28.00,
-        "codigo": "027",
+        "codigo": "028",
         "categoria": "Limpieza del Hogar",
         "medida": "750 ml"
     },
     {
         "descripcion": "Desinfectante Pino Concentrado",
         "precioVenta": 35.00,
-        "codigo": "028",
+        "codigo": "029",
         "categoria": "Limpieza del Hogar",
         "medida": "1 Litro"
     },
     {
         "descripcion": "Detergente Líquido Lavanda",
         "precioVenta": 82.50,
-        "codigo": "029",
+        "codigo": "030",
         "categoria": "Detergentes",
         "medida": "4 Litros"
     }

@@ -1,66 +1,73 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
     margin: 20px;
 }
 
-h2 {
-    margin-top: 20px;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.cliente-info {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 10px;
-    margin-bottom: 20px;
+label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-.producto-form {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-table {
+input, select {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
-th {
-    background-color: #f2f2f2;
-}
-
-#totalCotizacion {
-    font-weight: bold;
-}
-
-.cotizacion {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.cotizacion header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.cotizacion h1 {
-    color: #007bff;
-}
-
-#descargarPDF, #volverInicio {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
+button {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
+}
+
+.productos-info {
+    display: flex;
+    align-items: center;
+}
+
+.productos-info label,
+.productos-info select,
+.productos-info input {
+    margin-right: 10px;
+}
+
+.botones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Estilos para la cotización generada */
+#cotizacionGenerada {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+#cotizacionGenerada h2 {
+    margin-top: 0;
+}
+
+#cotizacionGenerada ul {
+    list-style: none;
+    padding: 0;
+}
+
+#cotizacionGenerada li {
+    margin-bottom: 10px;
+}
+
+#cotizacionGenerada .total {
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
 }

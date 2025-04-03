@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("telefonoCliente").textContent = sessionStorage.getItem("telefonoCliente") || "N/A";
 
     // 🔹 Recuperar los productos cotizados y mostrarlos correctamente en la tabla
-    const cotizacion = JSON.parse(sessionStorage.getItem("cotizacionProductos"));
+    const cotizacion = sessionStorage.getItem("cotizacionProductos") ? JSON.parse(sessionStorage.getItem("cotizacionProductos")) : [];
     const tablaProductos = document.getElementById("listaProductosCotizados");
     let totalCotizacion = 0;
 
-    if (cotizacion && cotizacion.length > 0) {
+    if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
             const totalProducto = parseFloat(producto.precioUnitario) * parseInt(producto.cantidad);
             totalCotizacion += totalProducto;
@@ -41,6 +41,11 @@ document.getElementById('descargarImagen').addEventListener('click', function ()
         enlace.download = "cotizacion.png";
         enlace.click();
     });
+});
+
+// 🔹 Botón para volver al inicio (Solo una vez)
+document.getElementById('volverInicio').addEventListener('click', function () {
+    window.location.href = 'index.html'; // Redirige a la página principal
 });
 
 // 🔹 Botón para volver al inicio (Solo una vez)

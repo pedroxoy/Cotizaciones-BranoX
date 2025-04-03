@@ -101,13 +101,3 @@ sessionStorage.setItem('cotizacionProductos', JSON.stringify(productos));
     // 3️⃣ Redirigir a la previsualización de cotización
     window.location.href = 'previsualizacion.html';
 });
-
-
-    // Guardar la lista de productos en sessionStorage para recuperarla en `previsualizacion.html`
-    sessionStorage.setItem('cotizacionProductos', listaProductosCotizados);
-
-    // Redirigir a la previsualización de cotización
-    window.location.href = 'previsualizacion.html';
-});
-
-

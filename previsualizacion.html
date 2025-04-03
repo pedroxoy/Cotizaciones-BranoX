@@ -9,44 +9,41 @@
 </head>
 <body>
     <div class="container">
-        <h1>Previsualización de Cotización</h1>
+        <h1 class="logo">BRANOX</h1>
+        <p class="distribuidora">Distribuidora de productos de limpieza</p>
+        <p class="fechaCotizacion">Fecha: <span id="fechaCotizacion"></span></p>
+        <p class="numCotizacion">Número de Cotización: COT_0003</p>
 
-        <!-- Aquí se mostrará la cotización -->
-        <div id="cotizacionPreview"></div>
+        <!-- Información del Cliente -->
+        <section class="cliente-info">
+            <p><strong>Cliente:</strong> <span id="nombreCliente"></span></p>
+            <p><strong>Dirección:</strong> <span id="direccionCliente"></span></p>
+            <p><strong>NIT:</strong> <span id="nitCliente"></span></p>
+            <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
+        </section>
 
+        <!-- Tabla de Productos -->
+        <table class="tablaCotizacion">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Precio Total</th>
+                </tr>
+            </thead>
+            <tbody id="listaProductosCotizados"></tbody>
+        </table>
+
+        <p class="totalCotizacion"><strong>Total:</strong> Q<span id="totalCotizacion"></span></p>
+
+        <!-- Botones -->
         <div class="botones">
             <button id="descargarImagen">Descargar Imagen</button>
             <button id="volverInicio">Volver al Inicio</button>
         </div>
     </div>
 
-    <script>
-        // Recuperar la cotización desde sessionStorage
-        document.addEventListener("DOMContentLoaded", function () {
-            const cotizacion = sessionStorage.getItem("cotizacionProductos");
-            if (cotizacion) {
-                document.getElementById("cotizacionPreview").innerHTML = cotizacion;
-            } else {
-                document.getElementById("cotizacionPreview").innerHTML = "<p>No hay productos en la cotización.</p>";
-            }
-        });
-
-        // Descargar imagen de la cotización
-        document.getElementById('descargarImagen').addEventListener('click', function () {
-            const cotizacion = document.getElementById('cotizacionPreview');
-
-            html2canvas(cotizacion).then(canvas => {
-                const enlace = document.createElement('a');
-                enlace.href = canvas.toDataURL("image/png");
-                enlace.download = "cotizacion.png";
-                enlace.click();
-            });
-        });
-
-        // Volver al inicio
-        document.getElementById('volverInicio').addEventListener('click', function () {
-            window.location.href = 'index.html'; // Redirige a la página principal
-        });
-    </script>
+    <script src="previsualizacion.js"></script>
 </body>
 </html>

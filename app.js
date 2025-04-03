@@ -6,10 +6,12 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
-// 2️⃣ Luego puedes colocar la lógica de llenado del <select> aquí
+// 2️⃣ Cargar los productos en el `<select>`
 fetch('productos.json')
     .then(response => response.json())
     .then(data => {
+        productosDisponibles = data; // Guardar productos en variable global
+
         const productoSelect = document.getElementById('producto');
         if (!productoSelect) {
             console.error("No se encontró el elemento <select> con id 'producto'.");
@@ -29,7 +31,7 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
-// 3️⃣ Finalmente, la función para agregar productos al pedido
+// 3️⃣ Agregar productos al pedido
 document.getElementById('agregarProducto').addEventListener('click', function () {
     const codigoProducto = document.getElementById('producto').value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
@@ -50,6 +52,7 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
         `;
         listaProductos.innerHTML += productoHTML;
 
+        // Agregar funcionalidad para eliminar productos
         listaProductos.querySelectorAll('.eliminarProducto').forEach((btn) => {
             btn.addEventListener('click', function () {
                 this.parentNode.remove();
@@ -59,4 +62,21 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
         alert('Producto no encontrado.');
     }
 });
+
+// 4️⃣ **Generar Cotización** y redirigir a la previsualización
+document.getElementById('generarCotizacion').addEventListener('click', function () {
+    const listaProductosCotizados = document.getElementById('listaProductos').innerHTML;
+
+    if (!listaProductosCotizados.trim()) {
+        alert("No hay productos en la cotización.");
+        return;
+    }
+
+    // Guardar la cotización en sessionStorage para mostrarla en `previsualizacion.html`
+    sessionStorage.setItem('cotizacionProductos', listaProductosCotizados);
+
+    // Redirigir a la página de previsualización
+    window.location.href = 'previsualizacion.html';
+});
+
 

@@ -68,14 +68,15 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
 
 // 3️⃣ **Generar Cotización y guardar los datos sin modificar el precio**
 document.getElementById('generarCotizacion').addEventListener('click', function () {
-    const listaProductosCotizados = [];
-    document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
-        listaProductosCotizados.push({
-            descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
-            cantidad: item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", ""),
-            precioUnitario: parseFloat(item.querySelector("p:nth-child(3)").textContent.replace("Precio Unitario: Q", "")) // **Guardar solo el precio unitario**
-        });
+   const listaProductosCotizados = [];
+document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
+    listaProductosCotizados.push({
+        descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
+        cantidad: parseInt(item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", "")),
+        precioUnitario: parseFloat(item.dataset.precioVenta) // ✅ **Guardar precioVenta directamente como precio unitario**
     });
+});
+
 
     if (listaProductosCotizados.length === 0) {
         alert("No hay productos en la cotización.");

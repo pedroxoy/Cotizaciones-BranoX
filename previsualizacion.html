@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsualización de Cotización</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Previsualización de Cotización</h1>
+
+        <!-- Aquí se mostrará la cotización -->
+        <div id="cotizacionPreview"></div>
+
+        <div class="botones">
+            <button id="descargarImagen">Descargar Imagen</button>
+            <button id="volverInicio">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <script>
+        // Recuperar la cotización desde sessionStorage
+        document.addEventListener("DOMContentLoaded", function () {
+            const cotizacion = sessionStorage.getItem("cotizacionProductos");
+            if (cotizacion) {
+                document.getElementById("cotizacionPreview").innerHTML = cotizacion;
+            } else {
+                document.getElementById("cotizacionPreview").innerHTML = "<p>No hay productos en la cotización.</p>";
+            }
+        });
+
+        // Descargar imagen de la cotización
+        document.getElementById('descargarImagen').addEventListener('click', function () {
+            const cotizacion = document.getElementById('cotizacionPreview');
+
+            html2canvas(cotizacion).then(canvas => {
+                const enlace = document.createElement('a');
+                enlace.href = canvas.toDataURL("image/png");
+                enlace.download = "cotizacion.png";
+                enlace.click();
+            });
+        });
+
+        // Volver al inicio
+        document.getElementById('volverInicio').addEventListener('click', function () {
+            window.location.href = 'index.html'; // Redirige a la página principal
+        });
+    </script>
+</body>
+</html>

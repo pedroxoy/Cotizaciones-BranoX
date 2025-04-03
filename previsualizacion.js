@@ -14,9 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            const precioUnitario = parseFloat(producto.precioUnitario); // Precio por unidad correcto
+            // 💡 Corrección: Ahora "Precio Unitario" usa el `precioVenta` de `productos.json`
+            const precioUnitario = parseFloat(producto.precioUnitario); // Este es el precio por unidad correctamente obtenido
             const cantidad = parseInt(producto.cantidad); // Cantidad seleccionada
-            const totalProducto = precioUnitario * cantidad; // Precio total correcto
+            const totalProducto = precioUnitario * cantidad; // Cálculo correcto del Precio Total
 
             totalCotizacion += totalProducto; // Sumar al total de la cotización
 
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";
     }
 
-    // 🔹 Posicionar correctamente el total de la cotización
+    // 🔹 Posicionar correctamente el total de la cotización debajo de "Precio Total"
     const filaTotal = document.createElement("tr");
     filaTotal.innerHTML = `
         <td colspan="3"><strong>Total de la Cotización:</strong></td>
@@ -42,3 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     tablaProductos.appendChild(filaTotal);
 });
+
+// 🔹 Corrección de los botones de la página
+document.getElementById('descargarImagen').addEventListener('click', function () {
+    const cotizacion = document.getElementById('cotizacionPreview');
+
+    html2canvas(cotizacion).then(canvas => {
+        const enlace = document.createElement('a');
+        enlace.href = canvas.toDataURL("image/png");
+        enlace.download = "cotizacion.png";
+        enlace.click();
+    });
+});
+
+// 🔹 Corrección del botón "Volver al inicio"
+document.getElementById('volverInicio').addEventListener('click', function () {
+    window.location.href = 'index.html';
+});
+

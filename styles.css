@@ -5,7 +5,6 @@
     --color-boton: #007bff;
     --color-boton-hover: #0056b3;
     --color-texto: #333;
-    --color-tabla-header: #e0e0e0;
 }
 
 body {
@@ -15,7 +14,7 @@ body {
     padding: 0;
 }
 
-/* Contenedor General */
+/* Contenedor principal */
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -31,52 +30,43 @@ body {
 .logo {
     font-size: 2.5em;
     font-weight: bold;
+    text-align: center;
     color: var(--color-branox);
     margin-bottom: 10px;
 }
 
 .distribuidora {
+    text-align: center;
     font-size: 1em;
     color: var(--color-texto);
     margin-bottom: 20px;
 }
 
-/* Información del cliente */
+/* Información del Cliente */
 .cliente-info {
     text-align: left;
-    margin: 20px 0;
-}
-
-/* Tabla de productos */
-.tablaCotizacion {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.tablaCotizacion th {
-    background-color: var(--color-tabla-header);
-    text-align: center;
-    padding: 10px;
-}
-
-.tablaCotizacion td {
+    margin-bottom: 20px;
+    padding: 15px;
     border: 1px solid var(--color-borde);
-    padding: 10px;
-    text-align: left;
+    border-radius: 5px;
+    background-color: var(--color-fondo);
 }
 
-/* Total de cotización */
-.totalCotizacion {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
+/* Inputs y Select */
+input, select {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
 }
 
 /* Botones */
-.botones {
+.botones-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -92,4 +82,13 @@ button {
 
 button:hover {
     background-color: var(--color-boton-hover);
+}
+
+/* Lista de Productos */
+#listaProductos {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    background-color: var(--color-fondo);
 }

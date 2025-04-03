@@ -31,10 +31,15 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
-// 3️⃣ Agregar productos al pedido
 document.getElementById('agregarProducto').addEventListener('click', function () {
     const codigoProducto = document.getElementById('producto').value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
+
+    if (productosDisponibles.length === 0) {
+        alert("Error: La lista de productos aún no ha cargado correctamente.");
+        console.error("La lista de productos no está disponible.");
+        return;
+    }
 
     const selectedProduct = productosDisponibles.find(item => item.codigo === codigoProducto);
 
@@ -52,14 +57,17 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
         `;
         listaProductos.innerHTML += productoHTML;
 
-        // Agregar funcionalidad para eliminar productos
+        // Función para eliminar productos
         listaProductos.querySelectorAll('.eliminarProducto').forEach((btn) => {
             btn.addEventListener('click', function () {
                 this.parentNode.remove();
             });
         });
+
+        console.log("Producto agregado:", selectedProduct);
     } else {
-        alert('Producto no encontrado.');
+        alert("Producto no encontrado en la lista disponible.");
+        console.error("No se encontró el producto en la lista cargada.");
     }
 });
 

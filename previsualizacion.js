@@ -15,14 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
             if (producto.descripcion && producto.cantidad && producto.precioUnitario) {
-                const totalProducto = parseFloat(producto.precioUnitario) * parseInt(producto.cantidad);
-                totalCotizacion += totalProducto;
+                const precioUnitario = parseFloat(producto.precioUnitario); // Precio por unidad
+                const cantidad = parseInt(producto.cantidad); // Cantidad seleccionada
+                const totalProducto = precioUnitario * cantidad; // Precio total
+
+                totalCotizacion += totalProducto; // Sumar al total de la cotización
 
                 const fila = document.createElement("tr");
                 fila.innerHTML = `
                     <td>${producto.descripcion}</td>
-                    <td>${producto.cantidad}</td>
-                    <td>Q${parseFloat(producto.precioUnitario).toFixed(2)}</td>
+                    <td>${cantidad}</td>
+                    <td>Q${precioUnitario.toFixed(2)}</td>
                     <td>Q${totalProducto.toFixed(2)}</td>
                 `;
                 tablaProductos.appendChild(fila);
@@ -31,23 +34,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     } else {
+        console.warn("No hay productos en sessionStorage. Verifica `app.js`.");
         tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";
     }
 
-    document.getElementById("totalCotizacion").textContent = `Q${totalCotizacion.toFixed(2)}`;
+    // 🔹 Posicionar correctamente el total de la cotización debajo de "Precio Total"
+    const filaTotal = document.createElement("tr");
+    filaTotal.innerHTML = `
+        <td colspan="3"><strong>Total de la Cotización:</strong></td>
+        <td><strong>Q${totalCotizacion.toFixed(2)}</strong></td>
+    `;
+    tablaProductos.appendChild(filaTotal);
 });
 
-// 🔹 Función para descargar la cotización como imagen
-document.getElementById('descargarImagen').addEventListener('click', function () {
-    const cotizacion = document.getElementById('cotizacionPreview');
-
-    html2canvas(cotizacion).then(canvas => {
-        const enlace = document.createElement('a');
-        enlace.href = canvas.toDataURL("image/png");
-        enlace.download = "cotizacion.png";
-        enlace.click();
-    });
-});
 
 // 🔹 Botón para volver al inicio (Solo una vez)
 document.getElementById('volverInicio').addEventListener('click', function () {

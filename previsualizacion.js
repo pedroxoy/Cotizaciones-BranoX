@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            // 💡 Corrección: Ahora "Precio Unitario" usa el `precioVenta` de `productos.json`
-            const precioUnitario = parseFloat(producto.precioUnitario); // Este es el precio por unidad correctamente obtenido
+            // 💡 Corrección: Ahora "Precio Unitario" usa el `precioVenta` directamente desde productos.json
+            const precioUnitario = parseFloat(producto.precioUnitario); // Precio por unidad correcto
             const cantidad = parseInt(producto.cantidad); // Cantidad seleccionada
             const totalProducto = precioUnitario * cantidad; // Cálculo correcto del Precio Total
 
@@ -44,6 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
     tablaProductos.appendChild(filaTotal);
 });
 
+// 🔹 Corrección del botón "Volver al inicio"
+document.getElementById('volverInicio').addEventListener('click', function () {
+    window.location.href = 'index.html';
+});
+
 // 🔹 Corrección de los botones de la página
 document.getElementById('descargarImagen').addEventListener('click', function () {
     const cotizacion = document.getElementById('cotizacionPreview');
@@ -54,10 +59,5 @@ document.getElementById('descargarImagen').addEventListener('click', function ()
         enlace.download = "cotizacion.png";
         enlace.click();
     });
-});
-
-// 🔹 Corrección del botón "Volver al inicio"
-document.getElementById('volverInicio').addEventListener('click', function () {
-    window.location.href = 'index.html';
 });
 

@@ -1,9 +1,9 @@
-// 1️⃣ Cargar productos desde `productos.json`
+// 1️⃣ **Cargar productos desde `productos.json` correctamente**
 fetch('productos.json')
     .then(response => response.json())
     .then(data => {
-        console.log("Productos JSON cargados:", data); // Confirmar que los productos se cargan
-        productosDisponibles = data; // Guardar productos en variable global
+        console.log("Productos JSON cargados:", data);
+        productosDisponibles = data;
 
         const productoSelect = document.getElementById('producto');
         if (!productoSelect) {
@@ -17,7 +17,7 @@ fetch('productos.json')
             const option = document.createElement('option');
             option.value = producto.codigo;
             option.textContent = `${producto.descripcion} (${producto.medida})`;
-            option.dataset.precioVenta = producto.precioVenta; // **Guardar el precio unitario en el select**
+            option.dataset.precioVenta = producto.precioVenta; // ✅ **Ahora el precio unitario será el precioVenta real**
             productoSelect.appendChild(option);
         });
 
@@ -25,16 +25,15 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
-// 2️⃣ Agregar producto a la cotización
+// 2️⃣ **Agregar producto a la cotización**
 document.getElementById('agregarProducto').addEventListener('click', function () {
     const productoSelect = document.getElementById('producto');
     const codigoProducto = productoSelect.value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
-    const precioUnitario = parseFloat(productoSelect.options[productoSelect.selectedIndex].dataset.precioVenta); // **Usar precioVenta directamente**
+    const precioUnitario = parseFloat(productoSelect.options[productoSelect.selectedIndex].dataset.precioVenta); // ✅ **Usar precioVenta como precio unitario**
 
     if (!productosDisponibles.length) {
         alert("Error: La lista de productos aún no ha cargado correctamente.");
-        console.error("La lista de productos no está disponible.");
         return;
     }
 
@@ -52,7 +51,6 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
         `;
         listaProductos.innerHTML += productoHTML;
 
-        // **Función para eliminar productos**
         listaProductos.querySelectorAll('.eliminarProducto').forEach(btn => {
             btn.addEventListener('click', function () {
                 this.parentNode.remove();
@@ -68,31 +66,26 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
 
 // 3️⃣ **Generar Cotización y guardar los datos sin modificar el precio**
 document.getElementById('generarCotizacion').addEventListener('click', function () {
-   const listaProductosCotizados = [];
-document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
-    listaProductosCotizados.push({
-        descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
-        cantidad: parseInt(item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", "")),
-        precioUnitario: parseFloat(item.dataset.precioVenta) // ✅ **Guardar precioVenta directamente como precio unitario**
+    const listaProductosCotizados = [];
+    document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
+        listaProductosCotizados.push({
+            descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
+            cantidad: parseInt(item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", "")), // ✅ **Convertir a número**
+            precioUnitario: parseFloat(item.querySelector("p:nth-child(3)").textContent.replace("Precio Unitario: Q", "")) // ✅ **Convertir a número**
+        });
     });
-});
-
 
     if (listaProductosCotizados.length === 0) {
         alert("No hay productos en la cotización.");
         return;
     }
 
-    // **Guardar la información del cliente**
     sessionStorage.setItem('nombreCliente', document.getElementById('nombreCliente').value);
     sessionStorage.setItem('direccionCliente', document.getElementById('direccionCliente').value);
     sessionStorage.setItem('nitCliente', document.getElementById('nitCliente').value);
     sessionStorage.setItem('telefonoCliente', document.getElementById('telefonoCliente').value);
     
-    // **Guardar productos sin modificar precios**
     sessionStorage.setItem('cotizacionProductos', JSON.stringify(listaProductosCotizados));
 
-    // **Redirigir a la previsualización**
     window.location.href = 'previsualizacion.html';
 });
-

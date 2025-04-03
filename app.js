@@ -79,6 +79,29 @@ document.getElementById('generarCotizacion').addEventListener('click', function 
         alert("No hay productos en la cotización.");
         return;
     }
+    
+    // 1️⃣ Guardar la información del cliente
+    sessionStorage.setItem('nombreCliente', document.getElementById('nombreCliente').value);
+    sessionStorage.setItem('direccionCliente', document.getElementById('direccionCliente').value);
+    sessionStorage.setItem('nitCliente', document.getElementById('nitCliente').value);
+    sessionStorage.setItem('telefonoCliente', document.getElementById('telefonoCliente').value);
+
+    // Guardar la lista de productos en sessionStorage como JSON estructurado
+const productos = [];
+document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
+    productos.push({
+        descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
+        cantidad: item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", ""),
+        precioUnitario: item.querySelector("p:nth-child(3)").textContent.replace("Precio: Q", "")
+    });
+});
+sessionStorage.setItem('cotizacionProductos', JSON.stringify(productos));
+
+
+    // 3️⃣ Redirigir a la previsualización de cotización
+    window.location.href = 'previsualizacion.html';
+});
+
 
     // Guardar la lista de productos en sessionStorage para recuperarla en `previsualizacion.html`
     sessionStorage.setItem('cotizacionProductos', listaProductosCotizados);

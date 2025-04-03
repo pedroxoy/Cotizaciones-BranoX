@@ -80,10 +80,10 @@ document.getElementById('generarCotizacion').addEventListener('click', function 
         return;
     }
 
-    // Guardar la cotización en sessionStorage para mostrarla en `previsualizacion.html`
+    // Guardar la lista de productos en sessionStorage para recuperarla en `previsualizacion.html`
     sessionStorage.setItem('cotizacionProductos', listaProductosCotizados);
 
-    // Redirigir a la página de previsualización
+    // Redirigir a la previsualización de cotización
     window.location.href = 'previsualizacion.html';
 });
 

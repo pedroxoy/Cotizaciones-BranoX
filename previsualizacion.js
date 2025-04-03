@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 🔹 Recuperar información del cliente desde sessionStorage
+    // **Recuperar información del cliente desde `sessionStorage`**
     document.getElementById("nombreCliente").textContent = sessionStorage.getItem("nombreCliente") || "N/A";
     document.getElementById("direccionCliente").textContent = sessionStorage.getItem("direccionCliente") || "N/A";
     document.getElementById("nitCliente").textContent = sessionStorage.getItem("nitCliente") || "N/A";
     document.getElementById("telefonoCliente").textContent = sessionStorage.getItem("telefonoCliente") || "N/A";
 
-    // 🔹 Recuperar los productos cotizados correctamente
+    // **Recuperar los productos cotizados correctamente**
     const cotizacionJSON = sessionStorage.getItem("cotizacionProductos");
     const cotizacion = cotizacionJSON ? JSON.parse(cotizacionJSON) : [];
 
@@ -14,12 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            // 💡 Corrección: Ahora "Precio Unitario" usa el `precioVenta` directamente desde productos.json
-            const precioUnitario = parseFloat(producto.precioUnitario); // Precio por unidad correcto
-            const cantidad = parseInt(producto.cantidad); // Cantidad seleccionada
-            const totalProducto = precioUnitario * cantidad; // Cálculo correcto del Precio Total
+            const precioUnitario = parseFloat(producto.precioUnitario); // **Usar el precio de venta como unitario**
+            const cantidad = parseInt(producto.cantidad);
+            const totalProducto = precioUnitario * cantidad; // **Calcular correctamente el total**
 
-            totalCotizacion += totalProducto; // Sumar al total de la cotización
+            totalCotizacion += totalProducto;
 
             const fila = document.createElement("tr");
             fila.innerHTML = `
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";
     }
 
-    // 🔹 Posicionar correctamente el total de la cotización debajo de "Precio Total"
+    // **Posicionar correctamente el total de la cotización**
     const filaTotal = document.createElement("tr");
     filaTotal.innerHTML = `
         <td colspan="3"><strong>Total de la Cotización:</strong></td>
@@ -44,12 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
     tablaProductos.appendChild(filaTotal);
 });
 
-// 🔹 Corrección del botón "Volver al inicio"
+// **Corrección de los botones**
 document.getElementById('volverInicio').addEventListener('click', function () {
     window.location.href = 'index.html';
 });
 
-// 🔹 Corrección de los botones de la página
 document.getElementById('descargarImagen').addEventListener('click', function () {
     const cotizacion = document.getElementById('cotizacionPreview');
 

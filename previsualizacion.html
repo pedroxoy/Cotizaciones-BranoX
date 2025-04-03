@@ -1,49 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previsualización de Cotización</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1 class="logo">BRANOX</h1>
-        <p class="distribuidora">Distribuidora de productos de limpieza</p>
-        <p class="fechaCotizacion">Fecha: <span id="fechaCotizacion"></span></p>
-        <p class="numCotizacion">Número de Cotización: COT_0003</p>
-
-        <!-- Información del Cliente -->
-        <section class="cliente-info">
-            <p><strong>Cliente:</strong> <span id="nombreCliente"></span></p>
-            <p><strong>Dirección:</strong> <span id="direccionCliente"></span></p>
-            <p><strong>NIT:</strong> <span id="nitCliente"></span></p>
-            <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
-        </section>
-
-        <!-- Tabla de Productos -->
-        <table class="tablaCotizacion">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Precio Total</th>
-                </tr>
-            </thead>
-            <tbody id="listaProductosCotizados"></tbody>
-        </table>
-
-        <p class="totalCotizacion"><strong>Total:</strong> Q<span id="totalCotizacion"></span></p>
-
-        <!-- Botones -->
-        <div class="botones">
-            <button id="descargarImagen">Descargar Imagen</button>
-            <button id="volverInicio">Volver al Inicio</button>
-        </div>
-    </div>
-
-    <script src="previsualizacion.js"></script>
-</body>
-</html>
+<table class="tablaCotizacion">
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Total</th>
+        </tr>
+    </thead>
+    <tbody id="listaProductosCotizados"></tbody>
+</table>
+<p class="totalCotizacion"><strong>Total:</strong> Q<span id="totalCotizacion"></span></p>

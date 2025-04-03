@@ -14,21 +14,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            const precioUnitario = parseFloat(producto.precioUnitario); // **Usar el precio de venta como unitario**
-            const cantidad = parseInt(producto.cantidad);
-            const totalProducto = precioUnitario * cantidad; // **Calcular correctamente el total**
+    const precioUnitario = parseFloat(producto.precioUnitario); // ✅ **Ya es el precio correcto de `productos.json`**
+    const cantidad = parseInt(producto.cantidad);
+    const totalProducto = precioUnitario * cantidad; // ✅ **Multiplicación correcta**
 
-            totalCotizacion += totalProducto;
+    totalCotizacion += totalProducto;
 
-            const fila = document.createElement("tr");
-            fila.innerHTML = `
-                <td>${producto.descripcion}</td>
-                <td>${cantidad}</td>
-                <td>Q${precioUnitario.toFixed(2)}</td>
-                <td>Q${totalProducto.toFixed(2)}</td>
-            `;
-            tablaProductos.appendChild(fila);
-        });
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+        <td>${producto.descripcion}</td>
+        <td>${cantidad}</td>
+        <td>Q${precioUnitario.toFixed(2)}</td> <!-- ✅ **Este valor debe ser igual al precioVenta en productos.json** -->
+        <td>Q${totalProducto.toFixed(2)}</td> <!-- ✅ **Este es el cálculo correcto** -->
+    `;
+    tablaProductos.appendChild(fila);
+});
+
     } else {
         console.warn("No hay productos en sessionStorage. Verifica `app.js`.");
         tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";

@@ -1,20 +1,13 @@
-// 1️⃣ Verificar si el JSON se carga correctamente
+// 1️⃣ Cargar productos desde `productos.json`
 fetch('productos.json')
     .then(response => response.json())
     .then(data => {
-        console.log("Productos JSON cargados:", data); // Confirma si llegan los productos
-    })
-    .catch(error => console.error('Error al cargar productos:', error));
-
-// 2️⃣ Cargar los productos en el `<select>`
-fetch('productos.json')
-    .then(response => response.json())
-    .then(data => {
+        console.log("Productos JSON cargados:", data); // Confirmar que los productos se cargan
         productosDisponibles = data; // Guardar productos en variable global
 
         const productoSelect = document.getElementById('producto');
         if (!productoSelect) {
-            console.error("No se encontró el elemento <select> con id 'producto'.");
+            console.error("No se encontró el <select> con id 'producto'.");
             return;
         }
 
@@ -24,6 +17,7 @@ fetch('productos.json')
             const option = document.createElement('option');
             option.value = producto.codigo;
             option.textContent = `${producto.descripcion} (${producto.medida})`;
+            option.dataset.precioVenta = producto.precioVenta; // **Guardar el precio unitario en el select**
             productoSelect.appendChild(option);
         });
 
@@ -31,12 +25,14 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
-// 3️⃣ Agregar producto seleccionado
+// 2️⃣ Agregar producto a la cotización
 document.getElementById('agregarProducto').addEventListener('click', function () {
-    const codigoProducto = document.getElementById('producto').value;
+    const productoSelect = document.getElementById('producto');
+    const codigoProducto = productoSelect.value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
+    const precioUnitario = parseFloat(productoSelect.options[productoSelect.selectedIndex].dataset.precioVenta); // **Usar precioVenta directamente**
 
-    if (productosDisponibles.length === 0) {
+    if (!productosDisponibles.length) {
         alert("Error: La lista de productos aún no ha cargado correctamente.");
         console.error("La lista de productos no está disponible.");
         return;
@@ -45,21 +41,19 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
     const selectedProduct = productosDisponibles.find(item => item.codigo === codigoProducto);
 
     if (selectedProduct) {
-        const precio = selectedProduct.precioVenta;
         const listaProductos = document.getElementById('listaProductos');
-
         const productoHTML = `
             <div class="producto-item">
                 <p><strong>Producto:</strong> ${selectedProduct.descripcion} (${selectedProduct.medida})</p>
                 <p><strong>Cantidad:</strong> ${cantidad}</p>
-                <p><strong>Precio:</strong> Q${(precio * cantidad).toFixed(2)}</p>
+                <p><strong>Precio Unitario:</strong> Q${precioUnitario.toFixed(2)}</p> 
                 <button class="eliminarProducto">Eliminar</button>
             </div>
         `;
         listaProductos.innerHTML += productoHTML;
 
-        // Función para eliminar productos
-        listaProductos.querySelectorAll('.eliminarProducto').forEach((btn) => {
+        // **Función para eliminar productos**
+        listaProductos.querySelectorAll('.eliminarProducto').forEach(btn => {
             btn.addEventListener('click', function () {
                 this.parentNode.remove();
             });
@@ -72,14 +66,14 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
     }
 });
 
-// 4️⃣ **Generar Cotización** y redirigir a la previsualización
+// 3️⃣ **Generar Cotización y guardar los datos sin modificar el precio**
 document.getElementById('generarCotizacion').addEventListener('click', function () {
     const listaProductosCotizados = [];
     document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
         listaProductosCotizados.push({
             descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
             cantidad: item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", ""),
-            precioUnitario: item.querySelector("p:nth-child(3)").textContent.replace("Precio: Q", "")
+            precioUnitario: parseFloat(item.querySelector("p:nth-child(3)").textContent.replace("Precio Unitario: Q", "")) // **Guardar solo el precio unitario**
         });
     });
 
@@ -88,16 +82,16 @@ document.getElementById('generarCotizacion').addEventListener('click', function 
         return;
     }
 
-    // Guardar la información del cliente
+    // **Guardar la información del cliente**
     sessionStorage.setItem('nombreCliente', document.getElementById('nombreCliente').value);
     sessionStorage.setItem('direccionCliente', document.getElementById('direccionCliente').value);
     sessionStorage.setItem('nitCliente', document.getElementById('nitCliente').value);
     sessionStorage.setItem('telefonoCliente', document.getElementById('telefonoCliente').value);
-
-    // Guardar los productos en sessionStorage
+    
+    // **Guardar productos sin modificar precios**
     sessionStorage.setItem('cotizacionProductos', JSON.stringify(listaProductosCotizados));
 
-    // Redirigir a la previsualización de cotización
+    // **Redirigir a la previsualización**
     window.location.href = 'previsualizacion.html';
 });
 

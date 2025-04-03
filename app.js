@@ -31,6 +31,7 @@ fetch('productos.json')
     })
     .catch(error => console.error('Error al cargar productos:', error));
 
+// 3️⃣ Agregar producto seleccionado
 document.getElementById('agregarProducto').addEventListener('click', function () {
     const codigoProducto = document.getElementById('producto').value;
     const cantidad = parseInt(document.getElementById('cantidad').value);
@@ -73,31 +74,30 @@ document.getElementById('agregarProducto').addEventListener('click', function ()
 
 // 4️⃣ **Generar Cotización** y redirigir a la previsualización
 document.getElementById('generarCotizacion').addEventListener('click', function () {
-   const listaProductosCotizados = [];
-   document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
-       listaProductosCotizados.push({
-           descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
-           cantidad: item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", ""),
-           precioUnitario: item.querySelector("p:nth-child(3)").textContent.replace("Precio: Q", "")
-       });
-   });
+    const listaProductosCotizados = [];
+    document.querySelectorAll("#listaProductos .producto-item").forEach(item => {
+        listaProductosCotizados.push({
+            descripcion: item.querySelector("p:nth-child(1)").textContent.replace("Producto: ", ""),
+            cantidad: item.querySelector("p:nth-child(2)").textContent.replace("Cantidad: ", ""),
+            precioUnitario: item.querySelector("p:nth-child(3)").textContent.replace("Precio: Q", "")
+        });
+    });
 
-   // 💡 **Corrección: Verificar si el array está vacío**
-   if (listaProductosCotizados.length === 0) {
-       alert("No hay productos en la cotización.");
-       return;
-   }
+    if (listaProductosCotizados.length === 0) {
+        alert("No hay productos en la cotización.");
+        return;
+    }
 
-   // 1️⃣ Guardar la información del cliente
-   sessionStorage.setItem('nombreCliente', document.getElementById('nombreCliente').value);
-   sessionStorage.setItem('direccionCliente', document.getElementById('direccionCliente').value);
-   sessionStorage.setItem('nitCliente', document.getElementById('nitCliente').value);
-   sessionStorage.setItem('telefonoCliente', document.getElementById('telefonoCliente').value);
+    // Guardar la información del cliente
+    sessionStorage.setItem('nombreCliente', document.getElementById('nombreCliente').value);
+    sessionStorage.setItem('direccionCliente', document.getElementById('direccionCliente').value);
+    sessionStorage.setItem('nitCliente', document.getElementById('nitCliente').value);
+    sessionStorage.setItem('telefonoCliente', document.getElementById('telefonoCliente').value);
 
-   // 2️⃣ Guardar los productos como JSON en sessionStorage
-   sessionStorage.setItem('cotizacionProductos', JSON.stringify(listaProductosCotizados));
+    // Guardar los productos en sessionStorage
+    sessionStorage.setItem('cotizacionProductos', JSON.stringify(listaProductosCotizados));
 
-   // 3️⃣ Redirigir a la previsualización de cotización
-   window.location.href = 'previsualizacion.html';
+    // Redirigir a la previsualización de cotización
+    window.location.href = 'previsualizacion.html';
 });
 

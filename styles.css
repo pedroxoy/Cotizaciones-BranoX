@@ -5,6 +5,7 @@
     --color-boton: #007bff;
     --color-boton-hover: #0056b3;
     --color-texto: #333;
+    --color-tabla-header: #e0e0e0;
 }
 
 body {
@@ -14,6 +15,7 @@ body {
     padding: 0;
 }
 
+/* Contenedor General */
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -22,42 +24,60 @@ body {
     border: 1px solid var(--color-borde);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
+/* Estilos del encabezado */
 .logo {
     font-size: 2.5em;
     font-weight: bold;
-    text-align: center;
     color: var(--color-branox);
     margin-bottom: 10px;
 }
 
 .distribuidora {
-    text-align: center;
     font-size: 1em;
     color: var(--color-texto);
     margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 1.5em;
-    color: var(--color-texto);
-    margin-bottom: 10px;
+/* Información del cliente */
+.cliente-info {
+    text-align: left;
+    margin: 20px 0;
 }
 
-label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-}
-
-input, select {
+/* Tabla de productos */
+.tablaCotizacion {
     width: 100%;
-    max-width: 600px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tablaCotizacion th {
+    background-color: var(--color-tabla-header);
+    text-align: center;
     padding: 10px;
-    margin: 10px 0;
+}
+
+.tablaCotizacion td {
     border: 1px solid var(--color-borde);
-    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Total de cotización */
+.totalCotizacion {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Botones */
+.botones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
 }
 
 button {
@@ -72,19 +92,4 @@ button {
 
 button:hover {
     background-color: var(--color-boton-hover);
-}
-
-.botones-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-#listaProductos {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid var(--color-borde);
-    border-radius: 5px;
-    background-color: var(--color-fondo);
 }

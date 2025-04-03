@@ -6,23 +6,29 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("telefonoCliente").textContent = sessionStorage.getItem("telefonoCliente") || "N/A";
 
     // 🔹 Recuperar los productos cotizados y mostrarlos correctamente en la tabla
-    const cotizacion = sessionStorage.getItem("cotizacionProductos") ? JSON.parse(sessionStorage.getItem("cotizacionProductos")) : [];
+    const cotizacionJSON = sessionStorage.getItem("cotizacionProductos");
+    const cotizacion = cotizacionJSON ? JSON.parse(cotizacionJSON) : [];
+
     const tablaProductos = document.getElementById("listaProductosCotizados");
     let totalCotizacion = 0;
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            const totalProducto = parseFloat(producto.precioUnitario) * parseInt(producto.cantidad);
-            totalCotizacion += totalProducto;
+            if (producto.descripcion && producto.cantidad && producto.precioUnitario) {
+                const totalProducto = parseFloat(producto.precioUnitario) * parseInt(producto.cantidad);
+                totalCotizacion += totalProducto;
 
-            const fila = document.createElement("tr");
-            fila.innerHTML = `
-                <td>${producto.descripcion}</td>
-                <td>${producto.cantidad}</td>
-                <td>Q${parseFloat(producto.precioUnitario).toFixed(2)}</td>
-                <td>Q${totalProducto.toFixed(2)}</td>
-            `;
-            tablaProductos.appendChild(fila);
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td>${producto.descripcion}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>Q${parseFloat(producto.precioUnitario).toFixed(2)}</td>
+                    <td>Q${totalProducto.toFixed(2)}</td>
+                `;
+                tablaProductos.appendChild(fila);
+            } else {
+                console.error("Producto con datos incorrectos:", producto);
+            }
         });
     } else {
         tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";
@@ -41,11 +47,6 @@ document.getElementById('descargarImagen').addEventListener('click', function ()
         enlace.download = "cotizacion.png";
         enlace.click();
     });
-});
-
-// 🔹 Botón para volver al inicio (Solo una vez)
-document.getElementById('volverInicio').addEventListener('click', function () {
-    window.location.href = 'index.html'; // Redirige a la página principal
 });
 
 // 🔹 Botón para volver al inicio (Solo una vez)

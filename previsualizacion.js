@@ -43,11 +43,7 @@ document.getElementById('descargarImagen').addEventListener('click', function ()
     });
 });
 
-// 🔹 Botón para volver al inicio
-document.getElementById('volverInicio').addEventListener('click', function () {
-    window.location.href = 'index.html'; // Redirige a la página principal
-});
-
+// 🔹 Botón para volver al inicio (Solo una vez)
 document.getElementById('volverInicio').addEventListener('click', function () {
     window.location.href = 'index.html'; // Redirige a la página principal
 });

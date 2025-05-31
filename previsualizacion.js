@@ -14,17 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (cotizacion.length > 0) {
         cotizacion.forEach(producto => {
-            // Convertir valores a números antes de procesarlos
             const precioUnitario = parseFloat(producto.precioUnitario);
             const cantidad = parseInt(producto.cantidad);
 
-            // Verificar que los datos sean correctos
             if (isNaN(precioUnitario) || isNaN(cantidad)) {
                 console.error("Error en los datos del producto:", producto);
                 return;
             }
 
-            // Calcular precio total correctamente
             const totalProducto = precioUnitario * cantidad;
             totalCotizacion += totalProducto;
 
@@ -58,9 +55,9 @@ document.getElementById('volverInicio').addEventListener('click', function () {
 
 // Evento del botón "Descargar Cotización"
 document.getElementById('descargarImagen').addEventListener('click', function () {
-    const cotizacion = document.getElementById('cotizacionPreview'); // Solo la cotización
+    const cotizacion = document.getElementById('cotizacionCaptura'); // SOLO captura el contenido correcto
 
-    html2canvas(cotizacion).then(canvas => {
+    html2canvas(cotizacion, { scale: 2 }).then(canvas => { // Mejor calidad de imagen
         const enlace = document.createElement('a');
         enlace.href = canvas.toDataURL("image/png");
         enlace.download = "cotizacion.png";

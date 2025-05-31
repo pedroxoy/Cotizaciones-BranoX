@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const cotizacion = cotizacionJSON ? JSON.parse(cotizacionJSON) : [];
 
     const tablaProductos = document.getElementById("listaProductosCotizados");
+
+    // ⚠️ Solución: Vaciar la tabla antes de agregar productos para evitar duplicaciones
+    tablaProductos.innerHTML = ""; 
+
     let totalCotizacion = 0;
 
     if (cotizacion.length > 0) {
@@ -25,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const totalProducto = precioUnitario * cantidad;
             totalCotizacion += totalProducto;
 
-            // Crear la fila de la tabla con los datos corregidos
             const fila = document.createElement("tr");
             fila.innerHTML = `
                 <td>${producto.descripcion}</td>
@@ -35,17 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             tablaProductos.appendChild(fila);
         });
-    } else {
-        tablaProductos.innerHTML = "<tr><td colspan='4'>No hay productos en la cotización.</td></tr>";
     }
 
-    // Agregar la fila del total de la cotización
-    const filaTotal = document.createElement("tr");
-    filaTotal.innerHTML = `
-        <td colspan="3"><strong>Total de la Cotización:</strong></td>
-        <td><strong>Q${totalCotizacion.toFixed(2)}</strong></td>
-    `;
-    tablaProductos.appendChild(filaTotal);
+    // Ajustar el total correctamente
+    document.getElementById("totalCotizacion").textContent = totalCotizacion.toFixed(2);
 });
 
 // Evento del botón "Volver al inicio"
@@ -56,11 +52,20 @@ document.getElementById('volverInicio').addEventListener('click', function () {
 // Evento del botón "Descargar Cotización"
 document.getElementById('descargarImagen').addEventListener('click', function () {
     const cotizacion = document.getElementById('cotizacionCaptura'); // SOLO captura el contenido correcto
+    
+    // ⚠️ Solución: Evitar múltiples clics en el botón de descarga
+    const botonDescargar = document.getElementById('descargarImagen');
+    botonDescargar.disabled = true;
 
-    html2canvas(cotizacion, { scale: 2 }).then(canvas => { // Mejor calidad de imagen
+    html2canvas(cotizacion, { scale: 2 }).then(canvas => { 
         const enlace = document.createElement('a');
         enlace.href = canvas.toDataURL("image/png");
         enlace.download = "cotizacion.png";
         enlace.click();
+
+        // Reactivar el botón después de unos segundos
+        setTimeout(() => {
+            botonDescargar.disabled = false;
+        }, 2000);
     });
 });

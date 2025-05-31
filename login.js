@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     const errorElement = document.getElementById('error');
 
     // Validación básica (deberías tener una validación más robusta)
-    if (email === 'pedrozambrano354@gmail.com' && password === 'Madelyn1829') {
+    if (email === 'pedrozambrano354@gmail.com' && password === '1f74a32c96') {
         sessionStorage.setItem('autenticado', 'true');
         window.location.href = 'index.html';
     } else {

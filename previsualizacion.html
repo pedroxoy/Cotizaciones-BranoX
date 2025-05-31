@@ -14,36 +14,44 @@
 
         <!-- Información de la Cotización -->
         <section id="cotizacionPreview">
-            <h2>Información del Cliente</h2>
-            <p><strong>Cliente:</strong> <span id="nombreCliente"></span></p>
-            <p><strong>Dirección:</strong> <span id="direccionCliente"></span></p>
-            <p><strong>NIT:</strong> <span id="nitCliente"></span></p>
-            <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
+            <!-- Contenedor que será capturado en la imagen -->
+            <div id="cotizacionCaptura">
+                <h2>Información del Cliente</h2>
+                <p><strong>Cliente:</strong> <span id="nombreCliente"></span></p>
+                <p><strong>Dirección:</strong> <span id="direccionCliente"></span></p>
+                <p><strong>NIT:</strong> <span id="nitCliente"></span></p>
+                <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
 
-            <!-- Tabla de productos cotizados -->
-            <h2>Productos Cotizados</h2>
-            <table class="tablaCotizacion">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Precio Total</th>
-                    </tr>
-                </thead>
-                <tbody id="listaProductosCotizados"></tbody>
-            </table>
+                <!-- Tabla de productos cotizados -->
+                <h2>Productos Cotizados</h2>
+                <table class="tablaCotizacion">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaProductosCotizados"></tbody>
+                </table>
 
-            <!-- Total de la cotización -->
-            <p class="totalCotizacion"><strong>Total:</strong> <span id="totalCotizacion">Q0.00</span></p>
+                <!-- Total correcto de la cotización -->
+                <p class="totalCotizacion"><strong>Total de la Cotización:</strong> Q<span id="totalCotizacion"></span></p>
+            </div>
         </section>
 
-        <!-- Botones (Ahora están fuera de "cotizacionPreview" para que no sean capturados en la imagen) -->
+        <!-- Botones (Fuera de la zona de captura para que no aparezcan en la imagen) -->
         <div class="botones-container">
             <button id="descargarImagen">Descargar Cotización</button>
             <button id="volverInicio">Volver a la Página Principal</button>
         </div>
     </div>
+
+    <!-- Script de previsualización -->
+    <script src="previsualizacion.js"></script>
+</body>
+</html>
 
     <!-- Script de previsualización -->
     <script src="previsualizacion.js"></script>

@@ -376,6 +376,21 @@
         "codigo": "BCHM",
         "categoria": "Cosmetico",
         "medida": "Unidad"
+    },
+    {
+        "descripcion": "Plumin para ojos Negro",
+        "precioVenta": 45.00,
+        "codigo": "PLMNSAT",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Plumin para ojos Negro Mate",
+        "precioVenta": 45.00,
+        "codigo": "PLMNMAT",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
     }
 ]
+
 

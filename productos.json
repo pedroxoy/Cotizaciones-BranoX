@@ -278,5 +278,104 @@
         "codigo": "ENV00007",
         "categoria": "Envases",
         "medida": "1000 ml, Unidad"
+    },
+    {
+        "descripcion": "Contorneador 02 BISSÚ",
+        "precioVenta": 75.00,
+        "codigo": "CONT02",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Rubor 02 BISSÚ",
+        "precioVenta": 45.00,
+        "codigo": "RBR02",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Iluminador 07 BISSÚ",
+        "precioVenta": 45.00,
+        "codigo": "PCB07",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Sombra Quinteto 11 BISSÚ",
+        "precioVenta": 45.00,
+        "codigo": "SQ011",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Polvo para Párpados 19 BISSÚ",
+        "precioVenta": 20.00,
+        "codigo": "3310199",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Labial 01 Humectante BISSÚ",
+        "precioVenta": 29.00,
+        "codigo": "01",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Labial 18 Humectante BISSÚ",
+        "precioVenta": 29.00,
+        "codigo": "18",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Labial 27 Humectante BISSÚ",
+        "precioVenta": 29.00,
+        "codigo": "27",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Bálsamo Labial Lip Oil Uva Ruby Rose",
+        "precioVenta": 32.00,
+        "codigo": "BLMU003",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Máscara de Pestañas Gris",
+        "precioVenta": 32.00,
+        "codigo": "23079744",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Máscara de Pestañas Negro",
+        "precioVenta": 32.00,
+        "codigo": "501734",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Corrector Líquido 07",
+        "precioVenta": 35.00,
+        "codigo": "350107",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Esponja Maquilladora",
+        "precioVenta": 8.00,
+        "codigo": "ESP.30",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
+    },
+    {
+        "descripcion": "Brocha Maquilladora",
+        "precioVenta": 20.00,
+        "codigo": "BCHM",
+        "categoria": "Cosmetico",
+        "medida": "Unidad"
     }
 ]
+

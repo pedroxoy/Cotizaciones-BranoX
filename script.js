@@ -1,5 +1,9 @@
+let numeroCotizacion = 1;
+
 // Función principal para generar la factura
 function generarFactura() {
+  document.getElementById("titulo-cotizacion").textContent = `Cotización No. ${String(numeroCotizacion).padStart(5, '0')}`;
+
   const nombre = document.getElementById("nombre").value;
   const nit = document.getElementById("nit").value;
   const direccion = document.getElementById("direccion").value;
@@ -29,14 +33,15 @@ function generarFactura() {
 
   const facturaHTML = `
     <div class="encabezado">
-      <img src="logo-branox.png" alt="Branox">
+      <img src="logo-branox.png" alt="Logo">
       <div class="empresa">
-        <h1>Branox</h1>
         <p>NIT: 103035346</p>
         <p>Zona 7, Residenciales Imperial, Cobán A.V.</p>
         <p>Tel: 3809 9190</p>
       </div>
     </div>
+
+    <h2 style="text-align:center; margin-bottom:20px;">Cotización No. ${String(numeroCotizacion).padStart(5, '0')}</h2>
 
     <div class="datos-cliente">
       <h2>Datos del Cliente</h2>
@@ -67,7 +72,10 @@ function generarFactura() {
   contenedor.classList.remove("factura-oculta");
 
   document.getElementById("acciones-finales").classList.remove("factura-oculta");
+
+  numeroCotizacion++; // ✅ Incrementar al final
 }
+
 
 // Función para descargar la factura como imagen PNG
 function descargarImagen() {

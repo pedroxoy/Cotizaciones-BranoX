@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Facturas - Branox</title>
+
+  <!-- Fuente Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
+  <!-- Librería para capturar como imagen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .formulario, .tabla-productos {
+      background: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f0f0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #0078D4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    #factura-final {
+      width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      background: white;
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 8px;
+    }
+
+    #factura-final .encabezado {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #factura-final .encabezado img {
+      width: 100px;
+      height: auto;
+      margin-right: 20px;
+    }
+
+    #factura-final .empresa {
+      font-size: 14px;
+    }
+
+    #factura-final .datos-cliente {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+    #factura-final .datos-cliente h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #factura-final table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    #factura-final th, #factura-final td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: left;
+    }
+
+    #factura-final th {
+      background: #f0f0f0;
+    }
+
+    #acciones-finales {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .factura-oculta {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Generador de Facturas - Branox</h1>
+
+  <div class="formulario">
+    <label for="nombre">Nombre del Cliente:</label>
+    <input type="text" id="nombre">
+
+    <label for="nit">NIT:</label>
+    <input type="text" id="nit">
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion">
+  </div>
+
+  <div class="tabla-productos">
+    <table id="tabla-productos">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Lavaloza Branox"></td>
+          <td><input type="number" value="1"></td>
+          <td><input type="number" value="25.00"></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Suavizante Premium"></td>
+          <td><input type="number" value="2"></td>
+          <td><input type="number" value="18.00"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="generarFactura()">Generar Factura</button>
+  </div>
+  <!-- Botón para agregar más productos -->
+<div style="margin-top: 15px; text-align: center;">
+  <button id="agregar-producto">Agregar más productos</button>
+</div>
+
+  <div id="factura-final" class="factura-oculta"></div>
+
+  <div id="acciones-finales" class="factura-oculta">
+    <button onclick="descargarImagen()">Descargar como imagen</button>
+  </div>
+
+  <script>
+  function generarFactura() {
+    const nombre = document.getElementById("nombre").value;
+    const nit = document.getElementById("nit").value;
+    const direccion = document.getElementById("direccion").value;
+
+    const filas = document.querySelectorAll("#tabla-productos tbody tr");
+    let productosHTML = "";
+    let totalGeneral = 0;
+
+    filas.forEach(fila => {
+      const producto = fila.children[0].children[0].value;
+      const cantidad = parseFloat(fila.children[1].children[0].value);
+      const precio = parseFloat(fila.children[2].children[0].value);
+      if (!producto || isNaN(cantidad) || isNaN(precio)) return;
+
+      const total = cantidad * precio;
+      totalGeneral += total;
+
+      productosHTML += `
+        <tr>
+          <td>${producto}</td>
+          <td>${cantidad}</td>
+          <td>Q${precio.toFixed(2)}</td>
+          <td>Q${total.toFixed(2)}</td>
+        </tr>
+      `;
+    });
+
+    const facturaHTML = `
+      <div class="encabezado">
+        <img src="logo-branox.png" alt="Branox">
+        <div class="empresa">
+          <h1>Branox</h1>
+          <p>NIT: 103035346</p>
+          <p>Zona 7, Residenciales Imperial, Cobán A.V.</p>
+          <p>Tel: 3809 9190</p>
+        </div>
+      </div>
+
+      <div class="datos-cliente">
+        <h2>Datos del Cliente</h2>
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>NIT:</strong> ${nit}</p>
+        <p><strong>Dirección:</strong> ${direccion}</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${productosHTML}
+        </tbody>
+      </table>
+
+      <h3 style="text-align:right; margin-top:20px;">Total General: Q${totalGeneral.toFixed(2)}</h3>
+    `;
+
+    const contenedor = document.getElementById("factura-final");
+    contenedor.innerHTML = facturaHTML;
+    contenedor.classList.remove("factura-oculta");
+
+    document.getElementById("acciones-finales").classList.remove("factura-oculta");
+  }
+
+  function descargarImagen() {
+    const factura = document.getElementById("factura-final");
+    html2canvas(factura, {
+      scale: 2,        // 📈 Aumenta la resolución
+      useCORS: true    // 🛡️ Permite cargar imágenes externas si usas logo
+    }).then(canvas => {
+      const link = document.createElement("a");
+      link.download = "factura-branox.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+  }
+
+  function agregarProducto() {
+    const tbody = document.querySelector("#tabla-productos tbody");
+    const nuevaFila = document.createElement("tr");
+    nuevaFila.innerHTML = `
+      <td><input type="text" placeholder="Producto"></td>
+      <td><input type="number" value="1"></td>
+      <td><input type="number" value="0.00"></td>
+    `;
+    tbody.appendChild(nuevaFila);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("agregar-producto").addEventListener("click", agregarProducto);
+  });
+</script>
+</body>
+</html>
